@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>Feedback System</title>
+      <title>task6</title>
    </head>
    <body>
 
 <cfoutput>
          <form action="#CGI.SCRIPT_NAME#" method="post">
             <label for="key">Enter the key:</label>
-            <input type="text" id="key" name="key"><br>
+            <input type="text" name="key"><br>
             <label for="value">Enter the value:</label>
-            <input type="text" id="value" name="value"><br>
+            <input type="text" name="value"><br>
             <input type="submit" value="Submit">
          </form>
 </cfoutput>
+<cfif structKeyExists(form, "key") and structKeyExists(form, "value")>
 
-         <cfinclude  template="components/task6.cfc">
-         <cfset structure = createObject("component", "components.task6")>
-         <cfset structure.structureFunction(form.key,form.value)/>
-<cfdump var="#session.form#">
+<cfset task6 = new components.task6()>
+<cfset structData=task6.structureFunction(form.key,form.value)/>
+<cfdump var="#structData#">
 
+</cfif>
       
    </body>
 </html>
