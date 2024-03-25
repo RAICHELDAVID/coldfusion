@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>task6</title>
+      <title>Feedback System</title>
    </head>
    <body>
 
