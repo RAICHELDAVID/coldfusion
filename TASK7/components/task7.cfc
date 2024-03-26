@@ -1,14 +1,19 @@
 <cfcomponent>
 
-    <cffunction name="structureFunction" access="public">
-        <cfargument name="form" type="struct" required="true">
-        <cfif not structKeyExists(session, "formData")>
-            <cfset session.formData=structNew()/>
-        </cfif>
-        <cfif structKeyExists(arguments.form, "key") and structKeyExists(arguments.form, "value")>
-            <cfset session.formData[arguments.form.key]=value/>
-        </cfif>
-        <cfreturn session.formData>
+    <cffunction name="structureFunction" access="public" returnType="void">
+        <cfargument name="key" type="string" required="true">
+        <cfargument name="value" type="string" required="true">
+
+        <!--- Ensure session scope for persistence --->
+        <cfargument name="keyValuePairs" type="struct" >
+        
+        <!--- Store key-value pair in session scope --->
+        <cfset session.keyValuePairs[arguments.key] = arguments.value>
+    </cffunction>
+
+    <!--- Function to retrieve all key-value pairs --->
+    <cffunction name="getKeyValuePairs" access="public" returnType="struct">
+        <cfreturn session.keyValuePairs>
     </cffunction>
 
 </cfcomponent>
