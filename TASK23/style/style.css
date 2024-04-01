@@ -1,0 +1,312 @@
+body{
+   background-color:#649b04;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
+
+}
+div.formBody{
+    margin: 0 auto 10px auto;
+    width: 640px;
+    background-color: #FFFFFF;
+    border: 0 solid #cccccc;
+    text-align: left;
+    background: #fff;
+
+}
+#logo{
+    background-image: none;
+    background-color: #99cc00;
+
+}
+
+form.wufoo{
+    margin: 20px 14px 0 14px;
+    padding: 0 0 20px 0;
+    letter-spacing: .01em;
+}
+form #header{
+    border-bottom: 1px dotted #CCCCCC;
+    clear: both;
+    margin: 0 0 5px 0;
+    padding: 0 1% 1.1em 1%;
+}
+.wufoo #header h2 {
+    font-size: 128% !important;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: normal;
+    color: #000000 !important;
+    margin: 0 0 5px 0;
+    clear: left;
+}
+.wufoo #header div {
+    font-size: 73% !important;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: normal;
+    color: #444444 !important;
+    line-height: 135%;
+}
+form ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.wufoo li {
+    width: 64%;
+    margin: 0;
+    padding: 6px 1% 9px 1%;
+    clear: both;
+    background-color: transparent;
+    transition: background-color 350ms ease-out;
+}
+.wufoo label.desc, .wufoo legend.desc, .likert caption {
+    font-size: 75% !important;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: bold;
+    color: #444444 !important;
+}
+#inputLabel,#title20,#inputLabelThree,#inputLabelFour,#inputLabelFive,#inputLabelSix{
+    font-size: 11px;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: bold;
+}
+form span.req {
+    color: red !important;
+}
+li fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+.radioDivision{
+    display: flex;
+    flex-direction: column;
+
+}
+.wufoo label.choice {
+    font-size: 90% !important;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: normal;
+    color: #444444 !important;
+}
+input.radio {
+    margin: 4px 0 0 0;
+}
+.wufoo input.text{
+    font-style: normal;
+    font-weight: normal;
+    color: #333333 !important;
+    border-top: 1px solid #7c7c7c;
+    border-left: 1px solid #c3c3c3;
+    border-right: 1px solid #c3c3c3;
+    border-bottom: 1px solid #ddd;
+    padding: 2px 0;
+}
+.dateContainer{
+    display: flex;
+
+}
+.dateContent{
+    display: flex;
+}
+.dateInputOne{
+    width: 19px;
+    height: 21px;
+}
+.dateInputTwo{
+    width:35px;
+    height: 21px;
+}
+.dateContent #month{
+    margin-right: 17px;
+    font-size: 11px;
+    margin-top: 4px;
+}
+.dateContent #day{
+    margin-right: 21px;
+    font-size: 11px;
+    margin-top: 4px;
+
+}
+.dateContent #year{
+    margin-top: 4px;
+    font-size: 11px;
+}
+.ui-datepicker .ui-datepicker-header {
+    background-color:white;
+
+}
+.ui-icon-circle-triangle-w,.ui-icon-circle-triangle-e {
+    background-position: initial;
+    transform: rotate(268deg);
+}
+
+
+.ui-datepicker{
+    width: 199px;
+
+}
+.ui-icon-circle-triangle-e {
+    transform: rotate(86deg);
+}
+.ui-datepicker .ui-datepicker-title {
+    font-size: small;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
+
+}
+.ui-widget-header {
+    border: none;
+    color: black;
+}
+.ui-datepicker table {
+    color: black;
+
+}
+.ui-state-default, .ui-widget-content .ui-state-default{
+    border: none;
+    color: #000000;
+}
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    border: 1px solid #dad55e;
+    background: #0059cc;
+    border-radius: 15%;
+    color: white;
+    text-align: center;
+}
+#field14{
+    width: 379px;
+    height: 20px;
+    
+}
+.wufoo .instruct small, .redesigned-theme-2018 .wufoo label.desc .user-instructions small {
+    font-size: 74%;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: normal;
+    color: #444444;
+}
+#field16{
+    padding-right: 60px;
+    padding-left: 18px;
+    font-size: small;
+    color: #333333;
+}
+#field16-1{
+    font-size: small;
+    color: #333333;
+}
+#field16-2{
+width: 16px;
+}
+#title24{
+    letter-spacing: 1px;
+    font-size: 13.5px;
+
+}
+#field22{
+    padding-right: 60px;
+    font-size: 13px;
+   
+
+}
+#field23{
+    font-size: 13px;
+    
+}
+#field13{
+    width: 291px;
+    height: 20px;
+}
+.inputThreeField{
+    width: 26px;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
+
+}
+.inputFourField{
+    width: 35px;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
+}
+
+#field25{
+    padding-right: 17px;
+    font-size: 13px;
+}
+#field25-1{
+    padding-right: 13px;
+    font-size: 13px;
+
+}
+#field25-2{
+    font-size: 13px;
+ 
+}
+.footerDivision{
+    font-size: 14px;
+    margin-left: 10px;
+    padding-bottom: 13px;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
+    color: #7e7e7e;
+}
+.footerDivision a{
+    color: #30a1cc;
+}
+.error{
+    margin: 0 !important;
+    font-weight: bold;
+    font-size: 11px;
+    color: #DF0000 !important;
+    clear: both;
+}
+.red-text {
+    color: red;
+}
+
+
+/* styles.css */
+
+.hidden {
+    display: none;
+}
+
+
+
+#inputContainer,#inputContainerTwo,#inputContainerThree,#inputContainerFour,#inputContainerFive,#inputContainerSix {
+    margin-bottom: 10px; /* Adjust margin as needed */
+}
+
+#inputContainer.error,#inputContainerTwo.error,#inputContainerThree.error,#inputContainerFour.error,#inputContainerFive.error,#inputContainerSix.error {
+    background: #ffdfdf;
+    padding: 5px; 
+    padding-bottom: 11px;
+}
+.symbol,.dateContent div,#field22,#field23,#field25,#field25-1,#field25-2{
+    color: #333333;
+
+}
+#errorLi, .error-container {
+    width: 99%;
+    background: #fff !important;
+    border: 1px solid red;
+    text-align: center;
+    border-radius: 20px;
+}
+#errorMsgLbl {
+    margin: 0 0 5px 0;
+    padding: 0;
+    color: #DF0000 !important;
+    font-size: 16px;
+}
+#errorMsg {
+    margin: 0 0 2px 0;
+    color: #000 !important;
+    font-size: 81%;
+}
+#errorMsg b {
+    padding: 2px 8px;
+    background-color: #FFDFDF !important;
+    color: red !important;
+    border-radius: 10px;
+}

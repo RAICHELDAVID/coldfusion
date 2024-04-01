@@ -1,11 +1,13 @@
 <cfcomponent>
-    <cffunction name="cookieCount" access="public">
-        <cfset visit = 0>
-        <cfif isDefined("cookie.newCookie")>
-            <cfset visit = cookie.newCookie>
+
+    <cffunction name="incrementVisitsCounter" access="public" returntype="numeric">
+        <cfargument name="cookieName" type="string" required="true">
+        <cfset var visitsCounter = 0> 
+        <cfparam name="cookie.#arguments.cookieName#" default="0">
+        <cfif IsDefined("form.submitButton")>
+            <cfset cookie[arguments.cookieName] = cookie[arguments.cookieName] + 1>
         </cfif>
-        <cfset visit +=1 >
-        <cfcookie name="newCookie" value="#visit#">
-        <cfreturn visit>
+        <cfreturn cookie[arguments.cookieName]>
     </cffunction>
+
 </cfcomponent>

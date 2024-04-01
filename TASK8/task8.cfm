@@ -1,19 +1,37 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>task8</title>
+    <title>Key-Value Form</title>
 </head>
 <body>
+
+    <h2>Key-Value Form</h2>
+
     <form action="#CGI.SCRIPT_NAME#" method="post">
-        <label>Key:</label>
-        <input type="text" name="key" required><br><br>
-        <label>Value:</label>
-        <input type="text" name="value" required><br><br>   
+        <label for="key">Key:</label>
+        <input type="text" id="key" name="key" required><br><br>
+        
+        <label for="value">Value:</label>
+        <input type="text" id="value" name="value" required><br><br>
+        
         <input type="submit" value="Submit">
     </form>
-    <cfinclude  template="components/task8.cfc">
-    <cfset task8=createObject("component","components.task8")/>
-    <cfset task8.structureFunction(form)/>
-    <cfdump var="#session.formDataTask8#">
+
+    <hr>
+
+    <h3>Submitted Key-Value Pairs:</h3>
+    
+    <cfparam name="application.keyValuePairs" default="#structNew()#">
+
+    <cfif structKeyExists(form, "key") and structKeyExists(form, "value")>
+        <cfset task8 = new components.task8()>
+        <cfset task8.structureFunction(form.key, form.value, application.keyValuePairs) />
+    </cfif>
+
+    <cfdump var="#application.keyValuePairs#" label="Key-Value Pairs">
+
 </body>
 </html>
+
+

@@ -1,46 +1,39 @@
 <cfcomponent>
-    <cffunction name="dateFunction" access="remote">
-        <cfoutput>TODAYS DATE IS = #dateFormat(now())#</cfoutput><br><br>
-        <cfoutput>CURRENT MONTH IN NUMERIC = #month(now())#</cfoutput><br><br>
-        <cfoutput>CURRENT MONTH IN WORD = #monthAsString(month(now()))#</cfoutput><br><br>
+    <cffunction name="dateFunction" access="public" returntype="string">
+        <cfset result = "">
         <cfset currentDate = dateFormat(now()) /> 
         <cfset todaydayOfWeek = dayOfWeek(currentDate)>
-        <cfset fridayOffset = (6-todaydayOfWeek)-7>
+        <cfset fridayOffset = (6 - todaydayOfWeek) - 7>
         <cfset mostRecentFriday = dateAdd("d", fridayOffset, currentDate)>
-        <cfoutput>LAST FRIDAY = #mostRecentFriday#</cfoutput><br><br>
-        <cfset d=#DaysInMonth(now())#>
-        <cfoutput>LAST DAY IN MONTH = #D#-</cfoutput>
-        <cfset m= #Month(now())#>
-        <cfoutput>#M#-</cfoutput>
-        <cfset yr=#Year(now())#>
-        <cfoutput>#YR#</cfoutput><br><br>
- 
-        <cfset yesterday = DateFormat(DateAdd('d',-1,Now()), 'mm/dd/yyyy')>
-
+        <cfset d = DaysInMonth(now())>
+        <cfset m = Month(now())>
+        <cfset yr = Year(now())>
+        <cfset yesterday = DateFormat(DateAdd('d', -1, Now()), 'mm/dd/yyyy')>
         <cfset fromDate = yesterday>
-        <cfset lastDay = DateFormat(DateAdd('d',-5,Now()), 'mm/dd/yyyy')>
-        <cfset toDate = lastDay> 
-
-        <cfloop from="#fromDate#" to="#toDate#" index="i" step=-1> 
-            <cfset dateinLoop =dateFormat(i,"mm/dd/yyyy")/>
+        <cfset lastDay = DateFormat(DateAdd('d', -5, Now()), 'mm/dd/yyyy')>
+        <cfset toDate = lastDay>
+        
+        <cfloop from="#fromDate#" to="#toDate#" index="i" step="-1"> 
+            <cfset dateinLoop = dateFormat(i, "mm/dd/yyyy")/>
             <cfset dayWeek = dayOfWeek(dateinLoop)/>
-            <cfif dayWeek eq 1>
-                <cfoutput><p style="color:red">#dateinLoop#-Sunday</p></cfoutput>
-            <cfelseif dayWeek eq 2>
-                <cfoutput><p style="color:green">#dateinLoop#-Monday</p></cfoutput>
-            <cfelseif dayWeek eq 3>
-                <cfoutput><p style="color:orange">#dateinLoop#-Tuesday</p></cfoutput>
-            <cfelseif dayWeek eq 4>
-                <cfoutput><p style="color:yellow">#dateinLoop#-Wednesday</p></cfoutput>
-            <cfelseif dayWeek eq 5>
-                <cfoutput><p style="color:black">#dateinLoop#-Thursday</p></cfoutput>
-            <cfelseif dayWeek eq 6>
-                <cfoutput><p style="color:blue">#dateinLoop#-Friday</p></cfoutput>
-            <cfelse>
-                <cfoutput><p style="color:darkblack">#dateinLoop#-Saturday</p></cfoutput>
-            </cfif>
+            <cfswitch expression="#dayWeek#">
+                <cfcase value="1"><cfset result &= "#dateinLoop#-Sunday<br>"></cfcase>
+                <cfcase value="2"><cfset result &= "#dateinLoop#-Monday<br>"></cfcase>
+                <cfcase value="3"><cfset result &= "#dateinLoop#-Tuesday<br>"></cfcase>
+                <cfcase value="4"><cfset result &= "#dateinLoop#-Wednesday<br>"></cfcase>
+                <cfcase value="5"><cfset result &= "#dateinLoop#-Thursday<br>"></cfcase>
+                <cfcase value="6"><cfset result &= "#dateinLoop#-Friday<br>"></cfcase>
+                <cfdefaultcase><cfset result &= "#dateinLoop#-Saturday<br>"></cfdefaultcase>
+            </cfswitch>
         </cfloop>
-
-
+        
+        <cfset result &= "TODAYS DATE IS = #dateFormat(now())#<br><br>">
+        <cfset result &= "CURRENT MONTH IN NUMERIC = #month(now())#<br><br>">
+        <cfset result &= "CURRENT MONTH IN WORD = #monthAsString(month(now()))#<br><br>">
+        <cfset result &= "LAST FRIDAY = #mostRecentFriday#<br><br>">
+        <cfset result &= "LAST DAY IN MONTH = #d#-#m#-#yr#<br><br>">
+        
+        <cfreturn result>
     </cffunction>
 </cfcomponent>
+
