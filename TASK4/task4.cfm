@@ -5,8 +5,8 @@
 </head>
 
 <body>
-    <h3>DATE PROGRAM</h3>
-<cfinvoke component="components.task4" method="dateFunction">
+    <cfinvoke component="components/task4" method="dateFunction" returnVariable="result">
+    <cfoutput>#result#</cfoutput>
 
  </body>
 </html>

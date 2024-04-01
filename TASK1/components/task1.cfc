@@ -1,26 +1,14 @@
 <cfcomponent>
-<cffunction name = "ratingUsingCFIF" access="remote">
-    <cfargument name="inputNumber" type="numeric">
-   <cfif #arguments.inputNumber# eq 1 OR #arguments.inputNumber# eq 2>
-        <cfoutput>
-            #arguments.inputNumber#
-        </cfoutput>
-            is OK
-    <cfelseif #arguments.inputNumber# eq 3>
-        <cfoutput>
-            #arguments.inputNumber#
-        </cfoutput>
-            is FAIR
-    <cfelseif #arguments.inputNumber# eq 4>
-        <cfoutput>
-            #arguments.inputNumber#
-        </cfoutput>
-            is GOOD
-    <cfelse>
-        <cfoutput>
-            #arguments.inputNumber#
-        </cfoutput>
-            is VERY GOOD
-    </cfif>
-</cffunction>
+    <cffunction name = "ratingUsingCFIF" access="public">
+        <cfargument name="inputNumber" type="numeric">
+        <cfif arguments.inputNumber eq 1 OR arguments.inputNumber eq 2>
+            <cfreturn "OK">
+        <cfelseif arguments.inputNumber eq 3>
+            <cfreturn "FAIR">
+        <cfelseif arguments.inputNumber eq 4>
+            <cfreturn "GOOD">
+        <cfelse>
+            <cfreturn "VERY GOOD">
+        </cfif>
+    </cffunction>
 </cfcomponent>

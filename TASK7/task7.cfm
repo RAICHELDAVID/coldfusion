@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,18 +22,15 @@
 
     <h3>Submitted Key-Value Pairs:</h3>
     
-    <!--- Ensure session scope for persistence --->
-    <cfparam name="session.keyValuePairs" default="#structNew()#">
+    <cfparam name="application.keyValuePairs" default="#structNew()#">
 
-    <!--- Store submitted key-value pair if form is submitted --->
     <cfif structKeyExists(form, "key") and structKeyExists(form, "value")>
         <cfset task7 = new components.task7()>
-        <!--- Call the function to store key-value pair --->
-        <cfset task7.structureFunction(form.key, form.value) />
+        <cfset task7.structureFunction(form.key, form.value, application.keyValuePairs) />
     </cfif>
 
-    <!--- Display all key-value pairs stored in session --->
-    <cfdump var="#session.keyValuePairs#" label="Key-Value Pairs">
+    <cfdump var="#application.keyValuePairs#" label="Key-Value Pairs">
 
 </body>
 </html>
+

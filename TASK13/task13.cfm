@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>task12</title>
+    <title>task13</title>
 </head>
 
 <body>
-    <cfoutput>
-        <form action="components/task13.cfc?method=countWord" method="post">
-            <label>enter the string</label>
-            <input type="text" name="input">
-            <input type="submit">
-            
-        </form> 
-    </cfoutput>
-
+    <form action="task13.cfm" method="post">
+        <label>enter the string</label>
+        <input type="text" name="input">
+        <input type="submit">
+    </form> 
+    
+    <cfif structKeyExists(form, "input")>
+        <cfset task13 = createObject("component", "components.task13").countWord(form.input) />
+        <cfoutput>#task13#</cfoutput>
+    </cfif>
 </body>
 </html>

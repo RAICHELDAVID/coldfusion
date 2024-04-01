@@ -1,16 +1,24 @@
+
 <cfcomponent>
-    <cffunction  name="structureFunction" access="public">
-        <cfargument  name="form" type="struct">
+    <cffunction name="structureFunction" access="public">
+        <cfargument name="form" type="struct">
+        
         <cfif not structKeyExists(session, "formDataTask9")>
-            <cfset session.formDataTask9=structNew()/>
+            <cfset session.formDataTask9 = structNew()>
         </cfif>
+        
+        <cfset var message = "">
+        
         <cfif structKeyExists(arguments.form, "key") and structKeyExists(arguments.form, "value")>
-            <cfif not structKeyExists(session.formDataTask9,key)>
-                <cfset session.formDataTask9[key]=value/>
+            <cfif not structKeyExists(session.formDataTask9, arguments.form.key)>
+                <cfset session.formDataTask9[arguments.form.key] = arguments.form.value>
             <cfelse>
-                <cfoutput>key already exist</cfoutput>
+                <cfset message = "Key already exists">
             </cfif>
         </cfif>
-        <cfreturn session.formDataTask9>
+        
+        <cfreturn message>
     </cffunction>
 </cfcomponent>
+
+
