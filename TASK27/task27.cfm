@@ -1,5 +1,4 @@
 
-<cfoutput>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,13 +18,13 @@
     </form>
     <cfset user = createObject("component", "components.task27")>
     <cfif structKeyExists(form, "login")>
-    <cfif user.login(form.username, form.password)>
-        <cflocation url="welcome.cfm">
-    <cfelse>
-        <cfset errorMessage = "Invalid username or password.">
+        <cfif user.login(form.username, form.password)>
+            <cflocation url="welcome.cfm">
+        <cfelse>
+            <cfset errorMessage = "Invalid username or password.">
+        </cfif>
     </cfif>
-</cfif>
 
 </body>
 </html>
-</cfoutput>
+

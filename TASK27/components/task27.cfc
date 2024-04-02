@@ -1,6 +1,6 @@
 <cfcomponent>
 
-    <cffunction name="login" access="remote" returntype="boolean">
+    <cffunction name="login" access="public" returntype="boolean">
         <cfargument name="username" type="string" required="true">
         <cfargument name="password" type="string" required="true">
         
@@ -14,7 +14,7 @@
         </cfif>
     </cffunction>
 
-    <cffunction name="logout" access="remote" returntype="void">
+    <cffunction name="logout" access="public" returntype="void">
         <cfset structDelete(session, "authenticated")>
         <cfset structDelete(session, "username")>
     </cffunction>

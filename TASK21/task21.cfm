@@ -18,9 +18,15 @@
         <cfif form.babyName EQ "" OR form.email EQ "" OR form.wishes EQ "" OR form.greetingImage EQ "">
             <p>Please fill in all fields.</p>
         <cfelse>
+            <cfsavecontent variable="formattedContent">
+                Dear #form.babyName#,
+                Warm wishes on your special day!
+                #form.wishes#
+            </cfsavecontent>
+            
             <cfset task21 = createObject("component", "components.task21")>
-            <cfset task21.sendBirthdayGreeting(form.babyName, form.email, form.wishes, form.greetingImage)>
-
+            <cfset task21.sendBirthdayGreeting(form.babyName, form.email, form.greetingImage, formattedContent)>
+            
             <p>Greeting email sent successfully!</p>
         </cfif>
     </cfif>
@@ -43,3 +49,4 @@
 
 </body>
 </html>
+

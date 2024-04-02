@@ -1,12 +1,13 @@
+
 <cfcomponent>
-    <cffunction name="evenOrOddFunction" access="remote">
-        <cfargument name="input" type="numeric">
-            <cfloop from=#arguments.input# to="1" index="i" step="-1">
-                <cfif #i#%2 eq 0>
-                    <cfoutput><p style="color:green">#i#</p></cfoutput>
-                <cfelse>
-                    <cfoutput><p style="color:blue">#i#</p></cfoutput>
-                </cfif>
-            </cfloop>
+    <cffunction name="evenOrOddFunction" access="public" returntype="array">
+        <cfargument name="numberInput" type="numeric">
+        <cfset var result = []>
+        <cfloop from="#arguments.numberInput#" to="1" index="i" step="-1">
+            <cfset color = i Mod 2 EQ 0 ? "green" : "blue">
+            <cfset ArrayAppend(result, {number=i, color=color})>
+        </cfloop>
+        <cfreturn result>
     </cffunction>
 </cfcomponent>
+
