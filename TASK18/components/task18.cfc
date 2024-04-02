@@ -1,5 +1,5 @@
 <cfcomponent>
-    <cffunction name="queryFunction" access="remote">
+    <cffunction name="queryFunction" access="public">
         <cfset newQuery=QueryNew("Id,Name,email","integer,varchar,varchar")/>
         <cfset QueryAddRow(newquery)/>
         <cfset QuerySetCell(newQuery, "Id","1")/>

@@ -1,15 +1,29 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>task17</title>
+    <title>Number Display</title>
 </head>
-
 <body>
-<form action="components/task17.cfc?method=evenOrOddFunction" method="post" onsubmit="return box()">
-    <label>enter the digit</label>
-    <input type="text" name="input" id="input">
-    <input type="submit">
-    
+    <h2>Enter a number and click Submit</h2>
+    <cfoutput>
+        <form name="numberForm" method="post" action="task17.cfm">
+            <input type="number" id="numberInput" name="numberInput" >
+            <input type="submit" value="Submit">
+        </form>
+    </cfoutput>
+    <cfif structKeyExists(form, "numberInput")>
+        <cfset numberDisplayService = createObject("component", "components.task17")>
+        <cfset numbers = numberDisplayService.evenOrOddFunction(form.numberInput)>
+        <cfoutput>
+            <cfloop array="#numbers#" index="item">
+                <p style="color: #item.color#">#item.number#</p>
+            </cfloop>
+        </cfoutput>
+    </cfif>
     <script src="script/script.js"></script>
- </body>
+</body>
 </html>
+
+

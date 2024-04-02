@@ -1,5 +1,5 @@
 <cfcomponent>
-    <cffunction name="validateUser" access="remote">
+    <cffunction name="validateUser" access="public">
         <cfargument name="username" type="string" required="true">
         <cfargument name="password" type="string" required="true">
 
@@ -15,12 +15,12 @@
             <cfset session.userID = getUser.userid>
             <cfset session.userRole = getUser.rolename>
             <cfif getUser.rolename eq "admin" or getUser.rolename eq "editor">
-                <cflocation url="/coldfusion_task/coldfusion_task/task28_new_try/admindashboard.cfm" addtoken="false">
+                <cflocation url="admindashboard.cfm" addtoken="false">
             <cfelse>
-                <cflocation url="/coldfusion_task/coldfusion_task/task28_new_try/userDashboard.cfm" addtoken="false">
+                <cflocation url="userDashboard.cfm" addtoken="false">
             </cfif>
         <cfelse>
-            <cfoutput>Invalid username or password.</cfoutput>
+            <cfreturn "invalid user">
         </cfif>
     </cffunction>
 </cfcomponent>

@@ -17,12 +17,10 @@
                     <cfif listFindNoCase(arguments.allowedExtensions, "." & cffile.serverFileExt)>
                         <cfset thumbnailPath = expandPath('assets/thumbnails/')>
                         <cfset thumbnailFileName = "thumbnail_" & cffile.serverFileName>
-                        <cfset thumbnailFileName = thumbnailFileName & "." & cffile.serverFileExt> <!-- Append the original file's extension -->
+                        <cfset thumbnailFileName = thumbnailFileName & "." & cffile.serverFileExt> 
 
                         <cfimage action="resize" source="#cffile.serverDirectory#\#cffile.serverFile#" destination="#thumbnailPath#\#thumbnailFileName#" width="20" height="20" overwrite="true">
-                     <!--- <cfimage source="#thumbnailPath#\#thumbnailFileName#" action="writeToBrowser">
-                       <cfoutput>#arguments.name#</cfoutput>--->
-                      <cfset response.success = true>
+                        <cfset response.success = true>
                         <cfset response.message = "File uploaded successfully.">
                         <cfset response.imageName = cffile.serverFileName>
                         <cfset response.thumbnailName = thumbnailFileName>

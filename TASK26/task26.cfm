@@ -5,9 +5,15 @@
 </head>
 
     <body>
-        <form action="components/task26.cfc?method=readFromFile" method="post" enctype="multipart/form-data">
+        <form action="task26.cfm" method="post" enctype="multipart/form-data">
             <input type="file" name="fileInput">
             <input type="submit">
         </form>
+                    <cfif StructKeyExists(form, "fileInput")>
+                <cfset local.task26=createObject("component","components/task26")>
+                <cfoutput>
+                    #local.task26.readFromFile(form.fileInput)#
+                </cfoutput>
+            </cfif>
     </body>
 </html>
