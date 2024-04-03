@@ -1,51 +1,28 @@
-
-$(document).ready(function(){
-    $("#checkEmail").submit(function(event){
-        var email = $("#email").val();
+$(document).ready(function() {
+    $('#checkEmail').click(function() {
+        var name = $('#name').val(); 
+        var email = $('#email').val();
+        if (name.trim() === '' || email.trim() === '') {
+            alert('Please Enter values in all Fields!..');
+            return;
+        }
         $.ajax({
-            url: "./components/task24.cfc",
-            data: {
-                method: "checkEmailExists",
-                email: email
-            },
-            success: function(response){
-
-                if(response>=1) {
-                    $("#emailStatus").text("Email ID already exists.");
-                    $("#subscribeButton").prop("disabled", true);
-                } else if(response==0) {
-                    $("#emailStatus").text("Email ID is available.");
-                    $("#subscribeButton").prop("disabled", false);
-                }
-            }
-        });
-    });
-
-    $("#subscribeForm").submit(function(event){
-        event.preventDefault();
-        var firstName = $("#firstName").val();
-        var email = $("#email").val();
-        $.ajax({
-            url: "./components/task24.cfc",
-            data: {
-                method: "addSubscriber",
-                firstName: firstName,
-                email: email
-            },
-            success: function(response){
-                console.log("Response from addSubscriber:", response);
-
-                if(response) {
-                    alert("Subscription successful!");
-                    $("#subscribeForm")[0].reset();
-                    $("#subscribeButton").prop("disabled", true);
+            url: 'components/task24.cfc?method=checkEmailExists',
+            type: 'post',
+            data: {name: name, email: email}, 
+            dataType: "json",
+            success: function(response) {
+                if (response.message == "exists") {
+                    alert('Email id is Already Subscribed');
+                    $('#submit').prop('disabled',true);
                 } else {
-                    alert("Subscription failed!");
+                    alert('Email id is not Subscribed Yet');
+                    $('#submit').prop('disabled',false);
                 }
+            },
+            error: function(xhr, status, error) {
+                alert("An error occurred : " +error);
             }
         });
     });
 });
-
-
-
