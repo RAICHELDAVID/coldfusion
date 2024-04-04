@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
     $("#checkEmail").click(function(event){
         event.preventDefault(); 
@@ -11,7 +10,9 @@ $(document).ready(function(){
                 email: email
             },
             success: function(response){
-                if(response) {
+                console.log(response);
+                var count = parseInt(response); 
+                if(count > 1){ 
                     $("#emailStatus").text("Email ID already exists.");
                     $("#subscribeButton").prop("disabled", true);
                 } else  {
@@ -19,6 +20,8 @@ $(document).ready(function(){
                     $("#subscribeButton").prop("disabled", false);
                 }
             }
+            
+            
         });
     });
 
@@ -48,5 +51,3 @@ $(document).ready(function(){
         });
     });
 });
-
-
