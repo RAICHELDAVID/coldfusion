@@ -14,14 +14,14 @@
     </form>
     
     <cfif structKeyExists(form, "username") and structKeyExists(form, "password")>
-        <cfset local.userComponent = createObject("component", "components.user")>
+        <cfset local.userComponent = createObject("component", "components.page")>
         
         <cfset local.result = local.userComponent.validateUser(form.username, form.password)>
         
         <cfif local.result EQ "invalid user">
             <p>Invalid username or password</p>
         <cfelse>
-            <cflocation url="admindashboard.cfm">
+            <cflocation url="list.cfm">
         </cfif>
     </cfif>
 </body>
