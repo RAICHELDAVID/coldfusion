@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Subscribe Form</title>
-    <script src="script/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script/subscribe_form.js"></script>
 </head>
 <body>
@@ -14,7 +13,7 @@
         <input type="email" id="email" name="email" required>
         <button type="button" id="checkEmail">Check</button><br><br>
         <span id="emailStatus"></span><br><br>
-        <button type="submit" id="subscribeButton" >Subscribe</button>
+        <button type="submit" id="subscribeButton" disabled>Subscribe</button>
     </form>
 </body>
 </html>
