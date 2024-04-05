@@ -22,3 +22,12 @@
 </body>
 </html>
 </cfoutput>
+
+
+<script>
+    function submitForm() {
+        document.getElementById("logoutForm").submit();
+    }
+</script>
+
+
