@@ -2,3 +2,36 @@ div{
     display: flex;
     
 }
+
+.loginClass{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1{
+    text-align: center;
+}
+
+ .loginClass p{
+    font-size: x-large;
+    text-align: center;
+
+}
+.listP{
+    text-align: center;
+    font-size: x-large;
+}
+div{
+justify-content: center;
+}
+table.center{
+    margin-left: auto; 
+    margin-right: auto;
+  
+}
+.errorP{
+    font-size: small;
+    text-align: center;
+
+}

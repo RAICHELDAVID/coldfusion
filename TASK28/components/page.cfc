@@ -1,39 +1,38 @@
 
 <cfcomponent>
-
-    <cffunction name="addPage" access="public">
-        <cfargument name="pagename" type="string" required="true">
-        <cfargument name="pagedesc" type="string" required="true">
-        
-        <cfquery name="addPageQuery" datasource="demo">
-            INSERT INTO task28_page (pagename, pagedesc)
-            VALUES (
-                <cfqueryparam value="#arguments.pagename#" cfsqltype="cf_sql_varchar">,
-                <cfqueryparam value="#arguments.pagedesc#" cfsqltype="cf_sql_varchar">
-            )
-        </cfquery>
-        
-        <cfreturn "Page added successfully">
-    </cffunction>
-
-
-    <cffunction name="editPage" access="public">
-        <cfargument name="pageid" type="numeric" required="true">
+    <cffunction name="savePage" access="public">
+        <cfargument name="pageid" type="numeric" required="false">
         <cfargument name="pagename" type="string" required="true">
         <cfargument name="pagedesc" type="string" required="true">
 
-        <cfquery name="editPageQuery" datasource="demo" result="editResult">
-            UPDATE task28_page
-            SET pagename = <cfqueryparam value="#arguments.pagename#" cfsqltype="cf_sql_varchar">,
+        <cfif arguments.pageid gte 1>
+            <cfquery name="editPageQuery" datasource="demo">
+                UPDATE task28_page
+                SET pagename = <cfqueryparam value="#arguments.pagename#" cfsqltype="cf_sql_varchar">,
                 pagedesc = <cfqueryparam value="#arguments.pagedesc#" cfsqltype="cf_sql_varchar">
-            WHERE pageid = <cfqueryparam value="#arguments.pageid#" cfsqltype="cf_sql_integer">
-        </cfquery>
-      
+                WHERE pageid = <cfqueryparam value="#arguments.pageid#" cfsqltype="cf_sql_integer">
+            </cfquery>
+            <cfreturn true>
+        <cfelse>
+            <cfquery name="addPageQuery" datasource="demo">
+                INSERT INTO task28_page (pagename, pagedesc)
+                VALUES (
+                    <cfqueryparam value="#arguments.pagename#" cfsqltype="cf_sql_varchar">,
+                    <cfqueryparam value="#arguments.pagedesc#" cfsqltype="cf_sql_varchar">
+                )
+            </cfquery>
+            <cfreturn true>
+        </cfif>
     </cffunction>
-    
+
     <cffunction name="getPages" access="public">
+        <cfargument name="pageid" type="numeric" required="false">
+        
         <cfquery name="getPagesQuery" datasource="demo">
-            SELECT * FROM task28_page
+            SELECT pageid,pagename,pagedesc FROM task28_page
+            <cfif structKeyExists(arguments, "pageid")>
+                WHERE pageid = <cfqueryparam value="#arguments.pageid#" cfsqltype="cf_sql_integer">
+            </cfif>
         </cfquery>
         <cfreturn getPagesQuery>
     </cffunction>
@@ -45,7 +44,6 @@
             DELETE FROM task28_page
             WHERE pageid = <cfqueryparam value="#arguments.pageid#" cfsqltype="cf_sql_integer">
         </cfquery>
-        
         <cfreturn "Page deleted successfully">
     </cffunction>
     
