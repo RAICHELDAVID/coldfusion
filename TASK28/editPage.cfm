@@ -24,16 +24,21 @@
     
     <cfset variables.pagename = form.pagename>
     <cfset variables.pagedesc = form.pagedesc>
-
+    <cfset specialCharList="!,@,%,$,^,&,*,(,),_,-,+,+,*,/">
     <cfloop index="i" from="1" to="#len(variables.pagename)#">
-        <cfset currentChar = mid(form.pagename, i, 1)>
-        <cfif isNumeric(currentChar)>
-            <cfset variables.Errormessage &= "Page Name should not contain digits!" & "<br>">
-            <cfbreak>
-        </cfif>
+        <cfloop list="#specialCharList#" item="item">
+            <cfset currentChar = mid(form.pagename, i, 1)>
+            <cfif isValid("integer",currentChar) or currentChar eq item>
+                <cfset variables.Errormessage &= "Page Name should not contain digits or special characters!" & "<br>">
+                <cfbreak>
+            </cfif>
+        </cfloop>
     </cfloop>
-    <cfif isNumeric(variables.pagedesc)>
+    <!---<cfif isNumeric(variables.pagedesc)>
             <cfset variables.Errormessage &= "Page description should not contain only digits!" & "<br>">
+    </cfif>--->
+    <cfif isValid("integer", variables.pagedesc)>
+            <cfset variables.Errormessage &= "Page Description is invalid!" & "<br>">
     </cfif>
         
         <!---<cfif not isValid("regex", form.pagename, local.validData)>
@@ -56,7 +61,7 @@
                 <cfset variables.Successmessage = "Page saved successfully!" & "<br>">
             </cfif>
         </cfif>
-        
+
 </cfif>
 <!DOCTYPE html>
 <html>
