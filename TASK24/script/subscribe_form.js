@@ -1,27 +1,52 @@
-$(document).ready(function() {
-    $('#checkEmail').click(function() {
-        var name = $('#name').val(); 
-        var email = $('#email').val();
-        if (name.trim() === '' || email.trim() === '') {
-            alert('Please Enter values in all Fields!..');
-            return;
-        }
+$(document).ready(function(){
+    $("#checkEmail").click(function(event){
+        event.preventDefault(); 
+        var email = $("#email").val();
         $.ajax({
-            url: 'components/task24.cfc?method=checkEmailExists',
-            type: 'post',
-            data: {name: name, email: email}, 
-            dataType: "json",
-            success: function(response) {
-                if (response.message == "exists") {
-                    alert('Email id is Already Subscribed');
-                    $('#submit').prop('disabled',true);
-                } else {
-                    alert('Email id is not Subscribed Yet');
-                    $('#submit').prop('disabled',false);
-                }
+            url: "./components/subscribe_actions.cfc",
+            method: "POST", 
+            data: {
+                method: "checkEmailExists",
+                email: email
             },
-            error: function(xhr, status, error) {
-                alert("An error occurred : " +error);
+            success: function(response){
+                console.log(response);
+                var count = parseInt(response); 
+                if(count > 1){ 
+                    $("#emailStatus").text("Email ID already exists.");
+                    $("#subscribeButton").prop("disabled", true);
+                } else  {
+                    $("#emailStatus").text("Email ID is available.");
+                    $("#subscribeButton").prop("disabled", false);
+                }
+            }
+            
+            
+        });
+    });
+
+    $("#subscribeButton").click(function(event){
+        event.preventDefault(); 
+        var firstName = $("#firstName").val();
+        var email = $("#email").val();
+        $.ajax({
+            url: "./components/subscribe_actions.cfc",
+            method: "POST", 
+            data: {
+                method: "addSubscriber",
+                firstName: firstName,
+                email: email
+            },
+            success: function(response){
+                console.log("Response from addSubscriber:", response); 
+
+                if(response) {
+                    alert("Subscription successful!");
+                    $("#subscribeForm")[0].reset(); 
+                    $("#subscribeButton").prop("disabled", true);
+                } else {
+                    alert("Subscription failed!");
+                }
             }
         });
     });
