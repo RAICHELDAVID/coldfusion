@@ -1,0 +1,79 @@
+
+
+.loginClass{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1{
+    text-align: center;
+}
+
+ .loginClass p{
+    font-size: x-large;
+    text-align: center;
+
+}
+.listP{
+    text-align: center;
+    font-size: x-large;
+}
+
+table.center{
+    margin-left: auto; 
+    margin-right: auto;
+  
+}
+.errorP{
+    font-size: small;
+    text-align: center;
+    color:red;
+
+}
+.successP{
+    font-size: small;
+    text-align: center;
+    color:green;
+}
+.loginbtn{
+    color:#ce9a43 !important;
+}
+.contentDiv{
+background: #d3eff7;
+}
+.bodytitle{
+color: darkgoldenrod;
+}
+.loginHeading{
+color: darkgoldenrod !important;
+font-family: sans-serif;
+letter-spacing: -1px;
+font-weight: lighter;
+padding-top: 10px;
+font-size: x-large;
+}
+
+input[type="text"], textarea {
+
+  background-color : white !important;
+
+}
+.username,.password{
+    color: darkgoldenrod;
+}
+.loginButton{
+background: darkgoldenrod !important;
+border: white !important;
+}
+table {
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+}
+.tableHeader{
+    color: #ce9a43 !important;
+    font-weight: 700;
+}
+a,td{
+    color:darkgoldenrod !important;
+}
