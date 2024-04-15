@@ -74,6 +74,57 @@ table {
     color: #ce9a43 !important;
     font-weight: 700;
 }
-a,td{
+a,td,.homeTitle,.homePara,.card-title,.card-text{
     color:darkgoldenrod !important;
+    text-decoration: none !important;
 }
+.btn-link{
+color: darkgoldenrod !important;
+text-decoration: none !important;
+}
+.card{
+    width: 30%;
+}
+.card-deck{
+    justify-content: space-around;
+}
+
+
+@media (max-width: 768px) {
+    .contentDiv {
+        flex-direction: column;
+    }
+                .navbar {
+        flex-direction: column;
+    }
+    .navbar-brand {
+        margin-bottom: 10px;
+    }
+    .loginbtn {
+        margin-top: 10px;
+    }
+}
+@media (max-width: 425px) {
+    .navbar-brand {
+        font-size: 14px;
+    }
+    .loginbtn {
+        font-size: 12px;
+    }
+}
+@media (max-width: 375px) {
+    .navbar-brand {
+        font-size: 12px;
+    }
+    .loginbtn {
+        font-size: 10px;
+    }
+}
+@media (max-width: 320px) {
+    .navbar-brand {
+        font-size: 10px;
+    }
+    .loginbtn {
+        font-size: 8px;
+    }
+} 

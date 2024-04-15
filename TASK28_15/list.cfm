@@ -1,25 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>DigifyCMS</title>
-    <link rel="icon" href="./assets/images/logo.png" type="image/png">
-    <link rel="stylesheet" href="assets/style/style.css">
-    <link href="./assets/style/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
-        /* Add custom CSS for table spacing */
+<cfset path = GetTemplatePath()>
+<cfset cfm=path>
+<cfinclude  template="header.cfm">
 
-    </style>
-</head>
-<body>
 <div class="container-fluid">
-    <nav class="navbar bg-body-tertiary">
+    <!---<nav class="navbar bg-body-tertiary">
         <div class="container-fluid d-flex">
-            <a class="navbar-brand d-flex" href="welcomeHome.cfm">
+            <a class="navbar-brand d-flex" href="list.cfm">
                 <img src="./assets/images/logo.png" alt="Logo" width="53" height="50" class="d-inline-block align-text-top">
                 <p class="mt-2 bodytitle">DigifyCMS</p>
             </a>
+            <a href="homePage.cfm">Home</a>
         </div>
-    </nav>
+    </nav>--->
+    <cfinclude template="navigation.cfm" >
     <cfif session.userRole eq "admin" or session.userRole eq "editor">
         <p class="loginHeading text-center">Welcome to listpage</p>
         <cfset local.pageService = createObject("component", "components.page")>
@@ -32,8 +25,7 @@
             <tr>
                 <th class="tableHeader">Page Name</th>
                 <th class="tableHeader">Page Description</th>
-                <th class="tableHeader">Edit</th>
-                <th class="tableHeader">Delete</th>
+                <th class="tableHeader">Action</th>
             </tr>
             <cfoutput query="local.pages">
                 <tr>
@@ -41,10 +33,9 @@
                     <td>#pagedesc#</td>
                     <td>
                         <a href="editPage.cfm?pageid=#local.pages.pageid#">edit</a>
+                         <a href="components/page.cfc?method=deletePage&pageid=#local.pages.pageid#">delete</a>
                     </td>
-                    <td>
-                        <a href="components/page.cfc?method=deletePage&pageid=#local.pages.pageid#">delete</a>
-                    </td>
+
                 </tr>
             </cfoutput>
         </table>
@@ -52,20 +43,17 @@
             <form action="editPage.cfm" method="post">
                 <input type="submit" value="Add Page" class="btn btn-primary loginButton">
             </form>
-            <form action="components/page.cfc?method=logout" method="post">
-                <input type="submit" value="logout" class="btn btn-secondary ms-2">
-            </form>
+
         </div>
     <cfelse>
         <cfset local.userDashboard = createObject("component", "components.page")>
         <cfset local.pages = local.userDashboard.getPages()>
         <cfif session.userRole eq "user">
-            <h1>content management system</h1>
-            <p class="listP">Welcome to listpage</p>
-            <table border="1" class="center">
+            <p class="loginHeading text-center">Welcome to listpage</p>
+            <table class="table table-striped center">
                 <tr>
-                    <th>Page Name</th>
-                    <th>Page Description</th>
+                    <th class="tableHeader">Page Name</th>
+                    <th class="tableHeader">Page Description</th>
                 </tr>
                 <cfoutput query="local.pages">
                     <tr>
@@ -74,8 +62,14 @@
                     </tr>
                 </cfoutput>
             </table>
+
         </cfif>
     </cfif>
+    <cfinclude template="footer.cfm" >
+    <!---<div class="welcomeFooter d-flex justify-content-center mb-2">
+        <a href="homePage.cfm" class="p-2">Home</a>
+        <a href="components/page.cfc?method=logout" class="p-2">logout</a>
+    </div>--->
 </div>
 </body>
 </html>

@@ -1,9 +1,11 @@
+<cfset path = GetTemplatePath()>
+<cfset cfm=path>
 <cfset user = createObject("component", "components.page").login()>
 <cfset user = createObject("component", "components.page")>
     <cfif structKeyExists(form, "login")>
         <cfset local.result = user.doLogin(form.username, form.password)>
         <cfif local.result>
-            <cflocation url="list.cfm">
+            <cflocation url="homePage.cfm">
         <cfelse>
             <cfoutput>Invalid user</cfoutput>
         </cfif>
@@ -24,24 +26,19 @@
         </div>
 </body>
 --->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>DigifyCMS</title>
-    <link rel="icon" href="./assets/images/logo.png" type="image/png">
-    <link rel="stylesheet" href="assets/style/style.css">
-    <link href="./assets/style/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-<body>
+<cfinclude  template="header.cfm">
+
 <div class="container-fluid">
-<nav class="navbar bg-body-tertiary">
+<!---<nav class="navbar bg-body-tertiary">
   <div class="container-fluid d-flex">
-    <a class="navbar-brand d-flex" href="welcomeHome.cfm">
+    <a class="navbar-brand d-flex" href="login.cfm">
       <img src="./assets/images/logo.png" alt="Logo" width="53" height="50" class="d-inline-block align-text-top">
       <p class="mt-2 bodytitle">DigifyCMS</p>
     </a>
+    <a href="welcomeHome.cfm">Back</a>
   </div>
-</nav>
+</nav>--->
+    <cfinclude template="navigation.cfm" >
     <h2 class="text-center loginHeading">Welcome to the login page</h2>
     <div class="row justify-content-center">
         <form action="login.cfm" class="col-sm-5 col-xs-5" method="post">
@@ -60,7 +57,6 @@
             <div class="mb-3 text-center">
                 <button type="submit" class="btn btn-primary loginButton" name="login">Submit</button>
                 <button type="submit" class="btn btn-secondary ">Cancel</button>
-
             </div>
         </form>
     </div>
