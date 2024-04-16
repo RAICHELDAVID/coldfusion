@@ -43,7 +43,7 @@ table.center{
 background: #d3eff7;
 }
 .bodytitle{
-color: darkgoldenrod;
+font-weight: 700;
 }
 .loginHeading{
 color: darkgoldenrod !important;
@@ -71,15 +71,12 @@ table {
     margin-bottom: 20px; 
 }
 .tableHeader{
-    color: #ce9a43 !important;
-    font-weight: 700;
+    font-weight: 600;
 }
-a,td,.homeTitle,.homePara,.card-title,.card-text{
-    color:darkgoldenrod !important;
+a{
     text-decoration: none !important;
 }
 .btn-link{
-color: darkgoldenrod !important;
 text-decoration: none !important;
 }
 .card{
@@ -88,7 +85,16 @@ text-decoration: none !important;
 .card-deck{
     justify-content: space-around;
 }
+.editLink,.updateLink{
+    color:black !important;
+}
+.welcomeFooterlist{
+    margin-top: 210px;
+}
+.welcomeFooteredit{
+    margin-top: 120px;
 
+}
 
 @media (max-width: 768px) {
     .contentDiv {
@@ -128,3 +134,5 @@ text-decoration: none !important;
         font-size: 8px;
     }
 } 
+
+
