@@ -83,7 +83,7 @@
 </cfif>
 </body>
 </html>--->
-<cfif !session.login>
+<cfif !session.loggedIn>
     <cfinclude  template="header.cfm">
     <div class="container-fluid">
         <nav class="navbar bg-body-tertiary">
@@ -107,7 +107,7 @@
             <button type="button" class="btn btn-link loginbtn" onclick="window.location.href='login.cfm';">LOGIN</button>
         </div>
     </div>
-<cfelseif session.login>
+<cfelseif session.loggedIn>
     <cfinclude  template="header.cfm">
     <div class="container-fluid">
         <!---<nav class="navbar bg-body-tertiary">
@@ -122,11 +122,12 @@
                 </form>
             </div>
         </nav>--->
-        <cfinclude template="navigation.cfm" >
         <cfif session.userRole eq "admin" or session.userRole eq "editor">
+        <cfinclude template="navigation.cfm" >
+
             <h5 class="homeTitle ps-2">Welcome back, Admin</h5>
             <p class="homePara ps-2">We're glad to see you here. Our site, DigifyCMS Website, is your hub for managing all aspects of your online presence. From creating engaging content to nurturing your growing community, you have the power to shape your digital space.</p>
-        <div class="card-deck d-flex">
+            <div class="card-deck d-flex">
             <div class="card">
                 <img class="card-img-top" src="../assets/images/add.jpg" alt="Card image cap">
                 <div class="card-body">

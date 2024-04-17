@@ -1,4 +1,3 @@
-<cfset cfm = GetTemplatePath()>
 <cfset variables.pageid=0>
 <cfset variables.pagename = "">
 <cfset variables.pagedesc = "">
@@ -59,10 +58,12 @@
         <!---<cfif isValid("integer", variables.pagedesc)>
             <cfset variables.Errormessage &= "Page Description is invalid!" & "<br>">
         </cfif>--->
-    <cfif variables.Errormessage eq "">
+
+        
+    <!---<cfif variables.Errormessage eq "">
         <cfset local.result = local.components.savePage(variables.pageid, form.pagename, form.pagedesc)>
             <cfif local.result>
                 <cfset variables.Successmessage = "Page saved successfully!" & "<br>">
             </cfif>
-    </cfif>
+    </cfif>--->
 </cfif>

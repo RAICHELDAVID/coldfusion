@@ -12,30 +12,31 @@
     </nav>--->
     <cfinclude template="navigation.cfm" >
     <cfoutput>
-        <h2 class="text-center loginHeading">Welcome to the ADD page</h2>
-        <p class="errorP">#variables.Errormessage#</p>
-        <p class="successP">#variables.Successmessage#</p>
+        <h2 class="text-center loginHeading">Save page</h2>
+        <!---<p class="errorP">#variables.Errormessage#</p>
+        <p class="successP">#variables.Successmessage#</p>--->
         <div class="row justify-content-center">
-            <form action="" class="col-sm-5 col-xs-5" method="post">
+            <form action="" class="col-sm-5 col-xs-5" id="editForm" method="post">
                 <div class="mb-3 row">
                     <label for="pagename" class="col-sm-2 col-form-label username w-auto">Page Name:</label><br>
                     <div>
-                        <input type="text" name="pagename"class="form-control" value="#variables.pagename#" ><br>
+                        <input type="text" name="pagename"class="form-control" value="#variables.pagename#" id="pagename"><br>
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="pagedesc" class="col-sm-2 col-form-label username w-auto">Page Description:</label><br>
                     <div>
-                        <textarea name="pagedesc" class="form-control">#variables.pagedesc#</textarea><br><br>
+                        <textarea name="pagedesc" class="form-control" id="pagedesc">#variables.pagedesc#</textarea><br><br>
                     </div>
                 </div>
-                <input type="hidden" name="pageid" value="#variables.pageid#">
+                <input type="hidden" name="pageid" value="#variables.pageid#" id="pageid">
                 <!---<input type="submit" name="submit" value="save page">
                 <input type="button" value="back" onclick="window.location.href='list.cfm';">--->
                 <div class="mb-3 text-center">
                     <button type="submit" class="btn btn-secondary " onclick="window.location.href='list.cfm';">Cancel</button>
-                    <button type="submit" class="btn btn-primary loginButton" name="submit">Save page</button>
+                    <button type="submit" class="btn btn-primary loginButton" name="submit" >Save page</button>
                 </div>
+                <p id="updateMessage"></p>
             </form>
         </div>
     </cfoutput>

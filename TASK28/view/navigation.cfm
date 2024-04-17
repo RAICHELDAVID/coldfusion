@@ -76,7 +76,7 @@
         <div>
             <a href="homePage.cfm" class="pe-2">Home</a>
             <a href="list.cfm">Pages</a>
-            <a href="../modals/page.cfc?method=logout" class="p-2">logout</a>
+            <a href="../models/page.cfc?method=logout" class="p-2">logout</a>
         </div>
     </div>
 </nav>

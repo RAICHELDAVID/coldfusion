@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+/*client side validation*/
     $('form').submit(function(e) {        
         $('.errorP').empty();
         
@@ -25,5 +27,61 @@ $(document).ready(function() {
             return true;
         }
     });
+
+/*login using ajax*/
+
+$('#loginBtn2').click(function() {
+    var username=$("#username").val().trim();
+    var password=$("#password").val().trim();
+    $.ajax({
+        type: "POST",
+        url: "../models/page.cfc?method=doLogin",
+        datatype: "json",
+        data: {
+            username:username,
+            password:password
+        },
+        success: function(response) {
+            console.log(response);
+            if (response){
+                $("#successMsg").text('Login successfull !!!!');
+                setTimeout(function() {
+                    window.location.href="../view/homePage.cfm";
+                },1000);
+            } else {
+                $("#errorMsg").text('Invalid user name or password !!!!'); 
+                return false;
+            }
+        },
+
+    });
+    return false;
 });
+
+
+/*update or add using ajax*/
+    $('#editForm').submit(function() {
+        var pageid=$('#pageid').val().trim();
+        var pagename=$('#pagename').val().trim();
+        var pagedesc=$('#pagedesc').val().trim();
+        $.ajax({
+            type:"POST",
+            url:"../models/page.cfc?method=savePage",
+            datatype:"json",
+            data:{pageid:pageid,
+                pagename:pagename,
+                pagedesc:pagedesc
+            },
+            success:function(response) {
+                console.log(response.message);
+                if(response.message =="updated")
+                $('#updateMessage').text('page updated');
+                setTimeout(function() {
+                    window.location.href="../view/list.cfm";
+                },1000);
+            }
+        });
+});
+});
+
 

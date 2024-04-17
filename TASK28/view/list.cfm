@@ -11,7 +11,7 @@
     </nav>--->
     <cfinclude template="navigation.cfm" >
     <cfif session.userRole eq "admin" or session.userRole eq "editor">
-        <p class="loginHeading text-center">Welcome to listpage</p>
+        <p class="loginHeading text-center">listpage</p>
         <cfset local.pageService = createObject("component", "admin.page")>
         <cfif structKeyExists(url, "logout")>
             <cfset local.pageService.logout()>
@@ -30,7 +30,7 @@
                     <td>#pagedesc#</td>
                     <td>
                         <a href="editPage.cfm?pageid=#local.pages.pageid#" class="editLink">edit</a>
-                         <a href="../modals/page.cfc?method=deletePage&pageid=#local.pages.pageid#" class="updateLink">delete</a>
+                        <a href="../models/page.cfc?method=deletePage&pageid=#local.pages.pageid#" class="updateLink">delete</a>
                     </td>
 
                 </tr>

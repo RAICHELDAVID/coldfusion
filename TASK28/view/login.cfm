@@ -1,5 +1,5 @@
 <cfset user = createObject("component", "admin.page").login()>
-<cfset user = createObject("component", "admin.page")>
+<!---<cfset user = createObject("component", "admin.page")>
     <cfif structKeyExists(form, "login")>
         <cfset local.result = user.doLogin(form.username, form.password)>
         <cfif local.result>
@@ -7,7 +7,7 @@
         <cfelse>
             <cfoutput>Invalid user</cfoutput>
         </cfif>
-    </cfif>
+    </cfif>--->
 
 <!---<body>
     <div class="loginClass">
@@ -51,11 +51,15 @@
                 </div>
             </div>
             <div class="mb-3 text-center">
-                <button type="submit" class="btn btn-primary loginButton" name="login">Submit</button>
+                <button type="submit" class="btn btn-primary loginButton" name="login" id="loginBtn2">Submit</button>
                 <button type="submit" class="btn btn-secondary ">Cancel</button>
+                <p id="successMsg" style="color:green;" class="pt-2"> </p>
+                <p id="errorMsg" style="color:red;"> </p>
+                
             </div>
         </form>
     </div>
 </div>
+
 </body>
 </html>
