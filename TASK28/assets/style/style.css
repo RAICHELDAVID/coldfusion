@@ -1,0 +1,141 @@
+
+
+.loginClass{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1{
+    text-align: center;
+}
+
+ .loginClass p{
+    font-size: x-large;
+    text-align: center;
+
+}
+.listP{
+    text-align: center;
+    font-size: x-large;
+}
+
+table.center{
+    margin-left: auto; 
+    margin-right: auto;
+  
+}
+.errorP{
+    font-size: small;
+    text-align: center;
+    color:red;
+
+}
+.successP{
+    font-size: small;
+    text-align: center;
+    color:green;
+}
+.loginbtn{
+    color:#ce9a43 !important;
+}
+.contentDiv{
+background: #d3eff7;
+}
+.bodytitle{
+font-weight: 700;
+}
+.loginHeading{
+color: darkgoldenrod !important;
+font-family: sans-serif;
+letter-spacing: -1px;
+font-weight: 800;
+padding-top: 10px;
+font-size: x-large;
+}
+
+input[type="text"], textarea {
+
+  background-color : white !important;
+
+}
+.username,.password{
+    color: darkgoldenrod;
+}
+.loginButton{
+background: darkgoldenrod !important;
+border: white !important;
+color: black !important;
+}
+table {
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+}
+.tableHeader{
+    font-weight: 600;
+}
+a,.username,.password{
+    color:black !important;
+    text-decoration: none !important;
+}
+.btn-link{
+text-decoration: none !important;
+}
+.card{
+    width: 30%;
+}
+.card-deck{
+    justify-content: space-around;
+}
+.editLink,.updateLink{
+    color:black !important;
+}
+.welcomeFooterlist{
+    margin-top: 210px;
+}
+.welcomeFooteredit{
+    margin-top: 120px;
+
+}
+
+
+@media (max-width: 768px) {
+    .contentDiv {
+        flex-direction: column;
+    }
+                .navbar {
+        flex-direction: column;
+    }
+    .navbar-brand {
+        margin-bottom: 10px;
+    }
+    .loginbtn {
+        margin-top: 10px;
+    }
+}
+@media (max-width: 425px) {
+    .navbar-brand {
+        font-size: 14px;
+    }
+    .loginbtn {
+        font-size: 12px;
+    }
+}
+@media (max-width: 375px) {
+    .navbar-brand {
+        font-size: 12px;
+    }
+    .loginbtn {
+        font-size: 10px;
+    }
+}
+@media (max-width: 320px) {
+    .navbar-brand {
+        font-size: 10px;
+    }
+    .loginbtn {
+        font-size: 8px;
+    }
+} 
+
+
