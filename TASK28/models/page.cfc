@@ -21,7 +21,7 @@
                     <cfqueryparam value="#arguments.pagedesc#" cfsqltype="cf_sql_varchar">
                 )
             </cfquery>
-            <cfreturn true>
+            <cfreturn {"message":"inserted"}>
         </cfif>
     </cffunction>
 
@@ -37,14 +37,14 @@
         <cfreturn getPagesQuery>
     </cffunction>
     
-    <cffunction name="deletePage" access="remote">
+    <cffunction name="deletePage" access="remote" returnformat="json">
         <cfargument name="pageid" type="numeric" required="true">
         
-        <cfquery name="deletePageQuery" datasource="demo">
+        <cfquery name="deletePageQuery" datasource="demo" result="deletePageQuery">
             DELETE FROM task28_page
             WHERE pageid = <cfqueryparam value="#arguments.pageid#" cfsqltype="cf_sql_integer">
         </cfquery>
-        <cfreturn "Page deleted successfully">
+        <cfreturn {"message":true}>
     </cffunction>
     
     <!---<cffunction name="doLogin" access="public">
@@ -126,6 +126,8 @@
         <cfset session.userRole = getUser.rolename>
         <cfset session.loggedIn = true>
         <cfreturn {"message": true}>
+    <cfelse>
+        <cfreturn {"message":false}>
     </cfif>
 </cffunction>
 

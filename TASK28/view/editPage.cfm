@@ -15,6 +15,7 @@
         <h2 class="text-center loginHeading">Save page</h2>
         <!---<p class="errorP">#variables.Errormessage#</p>
         <p class="successP">#variables.Successmessage#</p>--->
+        <p class="text-center" id="errorMessage" style="color:red;height:10px;"></p> 
         <div class="row justify-content-center">
             <form action="" class="col-sm-5 col-xs-5" id="editForm" method="post">
                 <div class="mb-3 row">
@@ -36,7 +37,7 @@
                     <button type="submit" class="btn btn-secondary " onclick="window.location.href='list.cfm';">Cancel</button>
                     <button type="submit" class="btn btn-primary loginButton" name="submit" >Save page</button>
                 </div>
-                <p id="updateMessage"></p>
+                <p id="updateMessage" class="text-center" style="color:green;height:10px;"></p>
             </form>
         </div>
     </cfoutput>

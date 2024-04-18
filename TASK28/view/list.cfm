@@ -30,17 +30,20 @@
                     <td>#pagedesc#</td>
                     <td>
                         <a href="editPage.cfm?pageid=#local.pages.pageid#" class="editLink">edit</a>
-                        <a href="../models/page.cfc?method=deletePage&pageid=#local.pages.pageid#" class="updateLink">delete</a>
+                        <!---<a href="../models/page.cfc?method=deletePage&pageid=#local.pages.pageid#" class="updateLink">delete</a>--->
+                        <a href="" class="deleteLink" data-pageid="#local.pages.pageid#">delete</a>
+                        
+
                     </td>
 
                 </tr>
+                
             </cfoutput>
         </table>
         <div class="d-flex justify-content-center">
             <form action="editPage.cfm" method="post">
                 <input type="submit" value="Add Page" class="btn btn-primary loginButton">
             </form>
-
         </div>
     <cfelse>
         <cfset local.userDashboard = createObject("component", "admin.page")>

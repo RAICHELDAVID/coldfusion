@@ -32,7 +32,7 @@
     <script src="../assets/script/script.js"></script>
 </cfif>
 --->
-<div class="welcomeFooter d-flex justify-content-center mb-2 mt-5">
+<div class="welcomeFooter d-flex justify-content-center">
     <a href="homePage.cfm" class="p-2">Home</a>
     <a href="list.cfm" class="p-2">Pages</a>
     <a href="../models/page.cfc?method=logout" class="p-2">logout</a>

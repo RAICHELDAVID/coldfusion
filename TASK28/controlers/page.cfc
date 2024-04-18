@@ -1,8 +1,10 @@
-<cfset variables.pageid=0>
-<cfset variables.pagename = "">
-<cfset variables.pagedesc = "">
-<cfset variables.Errormessage="">
-<cfset variables.Successmessage="">
+<cfcomponent>
+    <cffunction  name="editPageFunction" access="public">
+        <cfset variables.pageid=0>
+        <cfset variables.pagename = "">
+        <cfset variables.pagedesc = "">
+        <cfset variables.Errormessage="">
+        <cfset variables.Successmessage="">
 
 <cfif structKeyExists(url, "pageid")>
     <cfset variables.pageid = url.pageid>
@@ -67,3 +69,6 @@
             </cfif>
     </cfif>--->
 </cfif>
+
+    </cffunction>
+</cfcomponent>
