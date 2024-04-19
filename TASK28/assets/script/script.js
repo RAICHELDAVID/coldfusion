@@ -54,7 +54,7 @@
             }
         };
         
-        $('#editForm').submit(function(e) {
+        /*$('#editForm').submit(function(e) {
             e.preventDefault(); 
             
             if (validateFunction()) {
@@ -90,7 +90,31 @@
                     }
                 });
             }
+        });*/
+        $('.loginButton').click(function() {
+            var pagename = $('#pagename').val();
+            var pagedesc = $('#pagedesc').val();
+            $.ajax({
+                type:'POST',
+                url:'../controlers/page.cfc?method=validateInputs',
+                data:{
+                    pagename: pagename,
+                    pagedesc: pagedesc
+                },
+                datatype:'json',
+                success: function(response) {
+                    console.log(response);
+                    if (response.isValid) {
+                        alert("Inputs are valid.");
+                    } else {
+                        alert(response.errorMessage);
+                    }
+                },
+            });
         });
+        
+        
+        
         
         $(".deleteLink").click(function(e) {
             e.preventDefault(); 

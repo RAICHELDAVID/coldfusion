@@ -1,5 +1,8 @@
 
 <cfcomponent>
+
+<!---ajax validation of form--->
+<!---
     <cffunction name="savePage" access="remote" returnformat="json">
         <cfargument name="pageid" type="numeric" required="false">
         <cfargument name="pagename" type="string" required="true">
@@ -23,6 +26,30 @@
             </cfquery>
             <cfreturn {"message":"inserted"}>
         </cfif>
+    </cffunction>--->
+        <cffunction name="savePage" access="remote" returntype="boolean">
+        <cfargument name="pageid" type="numeric" required="false">
+        <cfargument name="pagename" type="string" required="true">
+        <cfargument name="pagedesc" type="string" required="true">
+
+        <cfif arguments.pageid gte 1>
+            <cfquery name="editPageQuery" datasource="demo">
+                UPDATE task28_page
+                SET pagename = <cfqueryparam value="#arguments.pagename#" cfsqltype="cf_sql_varchar">,
+                pagedesc = <cfqueryparam value="#arguments.pagedesc#" cfsqltype="cf_sql_varchar">
+                WHERE pageid = <cfqueryparam value="#arguments.pageid#" cfsqltype="cf_sql_integer">
+            </cfquery>
+            <cfreturn true>
+        <cfelse>
+            <cfquery name="addPageQuery" datasource="demo">
+                INSERT INTO task28_page (pagename, pagedesc)
+                VALUES (
+                    <cfqueryparam value="#arguments.pagename#" cfsqltype="cf_sql_varchar">,
+                    <cfqueryparam value="#arguments.pagedesc#" cfsqltype="cf_sql_varchar">
+                )
+            </cfquery>
+            <cfreturn true>
+        </cfif>
     </cffunction>
 
     <cffunction name="getPages" access="public">
@@ -37,7 +64,7 @@
         <cfreturn getPagesQuery>
     </cffunction>
     
-    <cffunction name="deletePage" access="remote" returnformat="json">
+    <!---<cffunction name="deletePage" access="remote" returnformat="json">
         <cfargument name="pageid" type="numeric" required="true">
         
         <cfquery name="deletePageQuery" datasource="demo" result="deletePageQuery">
@@ -45,7 +72,7 @@
             WHERE pageid = <cfqueryparam value="#arguments.pageid#" cfsqltype="cf_sql_integer">
         </cfquery>
         <cfreturn {"message":true}>
-    </cffunction>
+    </cffunction>--->
     
     <!---<cffunction name="doLogin" access="public">
         <cfargument name="username" type="string" required="true">

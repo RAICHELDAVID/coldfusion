@@ -1,4 +1,4 @@
-<cfset variables.pageid=0>
+<!---<cfset variables.pageid=0>
 <cfset variables.pagename = "">
 <cfset variables.pagedesc = "">
 <cfset variables.Errormessage="">
@@ -67,3 +67,21 @@
             </cfif>
     </cfif>--->
 </cfif>
+---->
+<cfif structKeyExists(url, "pageid")>
+    <cfset variables.pageid = url.pageid>
+    <cfset local.components = createObject("component", "CFC_models.page")>
+    <cfset local.result = local.components.getPages(variables.pageid)>
+    <cfset variables.pagename = local.result.pagename>
+    <cfset variables.pagedesc = local.result.pagedesc>
+</cfif>
+
+<!---<cfif structKeyExists(form, "submit")>
+    <cfset local.editComponents = createObject("component", "CFC_controlers.page")>
+    <cfset local.validationResult = local.editComponents.editPageFunction(form.pageid, form.pagename, form.pagedesc)>
+    <cfif NOT local.validationResult>
+        <cfoutput>
+            <p class="text-center savepageError" id="errorMessage" style="color: red;" >#local.editComponents.Errormessage#</p>
+        </cfoutput>
+    </cfif>
+</cfif>--->

@@ -100,7 +100,11 @@ text-decoration: none !important;
 .welcomeFooter{
     margin-top:120px !important;
 }
-
+.savepageError{
+    position: fixed;
+    top: 20px;
+    left:38%;
+}
 
 @media (max-width: 768px) {
     .contentDiv {

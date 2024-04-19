@@ -12,12 +12,13 @@
     <cfinclude template="navigation.cfm" >
     <cfif session.userRole eq "admin" or session.userRole eq "editor">
         <p class="loginHeading text-center">listpage</p>
-        <cfset local.pageService = createObject("component", "admin.page")>
+        <cfset local.pageService = createObject("component", "CFC_models.page")>
         <cfif structKeyExists(url, "logout")>
             <cfset local.pageService.logout()>
             <cflocation url="login.cfm">
         </cfif>
         <cfset local.pages = local.pageService.getPages()>
+
         <table class=" table table-striped center mx-3">
             <tr>
                 <th class="tableHeader">Page Name</th>
@@ -30,10 +31,8 @@
                     <td>#pagedesc#</td>
                     <td>
                         <a href="editPage.cfm?pageid=#local.pages.pageid#" class="editLink">edit</a>
-                        <!---<a href="../models/page.cfc?method=deletePage&pageid=#local.pages.pageid#" class="updateLink">delete</a>--->
-                        <a href="" class="deleteLink" data-pageid="#local.pages.pageid#">delete</a>
-                        
-
+                        <a href="../models/page.cfc?method=deletePage&pageid=#local.pages.pageid#" class="updateLink">delete</a>
+                        <!---<a href="" class="deleteLink" data-pageid="#local.pages.pageid#">delete</a>--->                       
                     </td>
 
                 </tr>
@@ -46,7 +45,7 @@
             </form>
         </div>
     <cfelse>
-        <cfset local.userDashboard = createObject("component", "admin.page")>
+        <cfset local.userDashboard = createObject("component", "CFC_models.page")>
         <cfset local.pages = local.userDashboard.getPages()>
         <cfif session.userRole eq "user">
             <p class="loginHeading text-center">Welcome to listpage</p>

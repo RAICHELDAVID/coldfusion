@@ -1,4 +1,25 @@
-<cfinclude  template="../controlers/action.cfm">
+<!---<cfset variables.pageid=0>
+<cfset variables.pagename = "">
+<cfset variables.pagedesc = "">
+<cfif structKeyExists(url, "pageid")>
+    <cfset variables.pageid = url.pageid>
+    <cfset local.components = createObject("component", "admin.page")>
+    <cfset local.result = local.components.getPages(variables.pageid)>
+    <cfloop query="local.result">
+        <cfif local.result.pageid EQ variables.pageid>
+            <cfset variables.pagename = local.result.pagename>
+            <cfset variables.pagedesc = local.result.pagedesc>
+            <cfbreak>
+        </cfif>
+    </cfloop>
+</cfif>
+<cfif structKeyExists(form, "submit")>
+        <cfset local.editComponents = createObject("component","admin_edit.page").editPageFunction(form.pageid,form.pagename,form.pagedesc)>
+        <cfif !local.editComponents>
+            <cfoutput>pagecontain alphabets only
+            </cfoutput>
+</cfif>
+
 <cfinclude  template="header.cfm">
 <div class="container-fluid">
     <!---<nav class="navbar bg-body-tertiary">
@@ -48,7 +69,41 @@
     </div>--->
 
 </body>
-</html>
+</html>--->
+<cfset variables.pageid = 0>
+<cfset variables.pagename = "">
+<cfset variables.pagedesc = "">
+
+<cfinclude template="header.cfm">
+<cfinclude template="navigation.cfm">
+<cfinclude template="../controlers/action.cfm">
+
+<div class="container savepageContainer" >
+    <h2 class="text-center loginHeading">Save page</h2>
+    <div class="row justify-content-center">
+<cfoutput>
+        <form action="" class="col-sm-5 col-xs-5" id="editForm" method="post">
+            <div class="mb-3 row">
+                <label for="pagename" class="col-sm-2 col-form-label username w-auto">Page Name:</label>
+                <input type="text" name="pagename" class="form-control" value="#variables.pagename#" id="pagename">
+            </div>
+            <div class="mb-3 row">
+                <label for="pagedesc" class="col-sm-2 col-form-label username w-auto">Page Description:</label>
+                <textarea name="pagedesc" class="form-control" id="pagedesc">#variables.pagedesc#</textarea>
+            </div>
+            <input type="hidden" name="pageid" value="#variables.pageid#" id="pageid">
+            <div class="mb-3 text-center">
+                <button type="submit" class="btn btn-secondary" onclick="window.location.href='list.cfm';">Cancel</button>
+                <button type="submit" class="btn btn-primary loginButton" name="submit">Save page</button>
+            </div>
+        </form>
+        <p id="message"></p>
+</cfoutput>
+    </div>
+</div>
+
+<cfinclude template="footer.cfm">
+
 
 
 
