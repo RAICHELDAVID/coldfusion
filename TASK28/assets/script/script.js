@@ -29,7 +29,7 @@
         });
 
         validateFunction = function() {        
-            $('#errorMessage').empty();
+            $('#saveMessage').empty();
             
             var pagename = $('#pagename').val().trim();
             var pagedesc = $('#pagedesc').val().trim();
@@ -47,7 +47,7 @@
             
             if (errors.length > 0) {
                 var errorMessage = errors.join('<br>');
-                $('#errorMessage').html(errorMessage);
+                $('#saveMessage').html(errorMessage);
                 return false;
             } else {
                 return true;
@@ -91,38 +91,89 @@
                 });
             }
         });*/
-        $('.loginButton').click(function() {
+
+
+        /*$('#saveButton').click(function() {
+            var pageid = $('#pageid').val();
             var pagename = $('#pagename').val();
             var pagedesc = $('#pagedesc').val();
             $.ajax({
-                type:'POST',
-                url:'../controlers/page.cfc?method=validateInputs',
-                data:{
+                type: 'POST',
+                url: '../controlers/page.cfc?method=savePage',
+                data: {
+                    pageid: pageid,
                     pagename: pagename,
                     pagedesc: pagedesc
                 },
-                datatype:'json',
+                dataType: 'json', 
                 success: function(response) {
-                    console.log(response);
-                    if (response.isValid) {
-                        alert("Inputs are valid.");
+                    if (response.isSuccess) { 
+                        
+                        alert(response.message);
                     } else {
-                        alert(response.errorMessage);
+                        alert(response.message);
                     }
                 },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                    alert("An error occurred while processing your request.");
+                }
             });
+            return false;
+        });*/
+
+        $('#saveButton').click(function() {
+            if (validateFunction()) {
+                var pageid = $('#pageid').val();
+                var pagename = $('#pagename').val();
+                var pagedesc = $('#pagedesc').val();
+                $.ajax({
+                    type: 'post',
+                    url: '../models/page.cfc?method=doesNotExist',
+                    data: { pagename: pagename },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.message) {
+                            $.ajax({
+                                type: "POST",
+                                url: "../models/page.cfc?method=savePage",
+                                dataType: "json",
+                                data: {
+                                    pageid: pageid,
+                                    pagename: pagename,
+                                    pagedesc: pagedesc
+                                },
+                                success: function(response) {
+                                    if (response.message) {
+                                        $('#saveMessageSuccess').text(response.message);
+                                    } else {
+                                        $('#saveMessageSuccess').text(response.message);
+                                    }
+                                    setTimeout(function() {
+                                        window.location.href = "../view/list.cfm";
+                                    }, 1000);
+                                },
+                                error: function(xhr, status, error) {
+                                    console.log(xhr.responseText);
+                                }
+                            });
+                        } else {
+                            $('#saveMessage').text("Page with the same name already exists. Cannot be added.");
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                        alert("An error occurred while processing your request.");
+                    }
+                });
+            }
+            return false;
         });
         
         
-        
-        
-        $(".deleteLink").click(function(e) {
+        $('#deleteLink').click(function(e) {
             e.preventDefault(); 
             var pageid = $(this).attr('data-pageid');
-                var data=$(this);
-                console.log(pageid);
-                
-                console.log(data);
             if(confirm("click OK to delete this page?")) { 
                 $.ajax({
                     type: "POST",
@@ -133,9 +184,8 @@
                     dataType: "json",
                     success: function(response) {
                         if (response) {
-                            $(data).parents("tr").remove();
 
-                            //$(e.target).closest("tr").remove();
+                            $(e.target).closest("tr").remove();
                         } 
                     },
 

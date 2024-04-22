@@ -2,8 +2,8 @@
 <cfcomponent>
 
 <!---ajax validation of form--->
-<!---
-    <cffunction name="savePage" access="remote" returnformat="json">
+
+    <!---<cffunction name="savePage" access="remote" returnformat="json">
         <cfargument name="pageid" type="numeric" required="false">
         <cfargument name="pagename" type="string" required="true">
         <cfargument name="pagedesc" type="string" required="true">
@@ -27,7 +27,53 @@
             <cfreturn {"message":"inserted"}>
         </cfif>
     </cffunction>--->
-        <cffunction name="savePage" access="remote" returntype="boolean">
+    <cffunction name="savePage" access="remote" returnformat="json">
+        <cfargument name="pageid" type="numeric" required="false">
+        <cfargument name="pagename" type="string" required="true">
+        <cfargument name="pagedesc" type="string" required="true">
+
+        <cftry>
+            <cfif arguments.pageid gte 1>
+                <cfquery name="editPageQuery" datasource="demo">
+                    UPDATE task28_page
+                    SET 
+                    pagename = <cfqueryparam value="#arguments.pagename#" cfsqltype="cf_sql_varchar">,
+                    pagedesc = <cfqueryparam value="#arguments.pagedesc#" cfsqltype="cf_sql_varchar">
+                    WHERE 
+                    pageid = <cfqueryparam value="#arguments.pageid#" cfsqltype="cf_sql_integer">
+                </cfquery>
+                <cfreturn {"success":true,"message":"updated"}>
+            <cfelse>
+                <cfquery name="addPageQuery" datasource="demo">
+                    INSERT INTO task28_page (pagename, pagedesc)
+                    VALUES (
+                    <cfqueryparam value="#arguments.pagename#" cfsqltype="cf_sql_varchar">,
+                    <cfqueryparam value="#arguments.pagedesc#" cfsqltype="cf_sql_varchar">
+                    )
+                </cfquery>
+                <cfreturn {"success":true,"message":"inserted"}>
+            </cfif>
+        
+        <cfcatch>
+            <cfreturn {"error":"An error occurred while saving the page."}>
+        </cfcatch>
+        </cftry>
+    </cffunction>
+
+    <cffunction  name="doesNotExist" access="remote" returnformat="json">
+        <cfargument  name="pagename" type="string" required="true">
+        <cfquery name="pageExist" datasource="demo">
+            SELECT pagename FROM task28_page
+            WHERE pagename=<cfqueryparam  value="#arguments.pagename#" cfsqltype="cf_sql_varchar">
+        </cfquery>
+        <cfif pageExist.recordCount eq 0>
+            <cfreturn {"message":true}>
+        <cfelse>
+            <cfreturn {"message":false}>
+        </cfif>
+        
+    </cffunction>
+        <!---<cffunction name="savePage" access="remote" returntype="boolean">
         <cfargument name="pageid" type="numeric" required="false">
         <cfargument name="pagename" type="string" required="true">
         <cfargument name="pagedesc" type="string" required="true">
@@ -50,7 +96,7 @@
             </cfquery>
             <cfreturn true>
         </cfif>
-    </cffunction>
+    </cffunction>--->
 
     <cffunction name="getPages" access="public">
         <cfargument name="pageid" type="numeric" required="false">
@@ -64,7 +110,7 @@
         <cfreturn getPagesQuery>
     </cffunction>
     
-    <!---<cffunction name="deletePage" access="remote" returnformat="json">
+    <cffunction name="deletePage" access="remote" returnformat="json">
         <cfargument name="pageid" type="numeric" required="true">
         
         <cfquery name="deletePageQuery" datasource="demo" result="deletePageQuery">
@@ -72,7 +118,7 @@
             WHERE pageid = <cfqueryparam value="#arguments.pageid#" cfsqltype="cf_sql_integer">
         </cfquery>
         <cfreturn {"message":true}>
-    </cffunction>--->
+    </cffunction>
     
     <!---<cffunction name="doLogin" access="public">
         <cfargument name="username" type="string" required="true">

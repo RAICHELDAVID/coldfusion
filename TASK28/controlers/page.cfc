@@ -99,31 +99,144 @@
 </cfcomponent>--->
 
 
-<cfcomponent>
+<!---<cfcomponent>
     <cffunction name="validateInputs" access="remote" returnformat="json" returntype="struct">
         <cfargument name="pagename" type="string" required="true">
         <cfargument name="pagedesc" type="string" required="true">
         
         <cfset var response = {
-            isValid = true,
-            errorMessage = ""
+            "isValid" = true,
+            "errorMessage" = ""
         }>
         <cfset var validData = "^[a-zA-Z]+$">
         <cfset var validateData = "^(?=.*[a-zA-Z])[\w\s]+$">
-        <cfif len(trim(arguments.pagename)) eq 0 OR len(trim(arguments.pagedesc)) eq 0>
+        <cfif len(trim(arguments.pagename)) eq 0 AND len(trim(arguments.pagedesc)) eq 0>
             <cfset response.isValid = false>
             <cfset response.errorMessage &= "Both page name and page description are required.<br>">
+            <cfreturn response>
         </cfif>
-
         <cfif NOT isValid("regex", arguments.pagename, validData)>
             <cfset response.isValid = false>
             <cfset response.errorMessage &= "Page name should contain only alphabetic characters.<br>">
+            <cfreturn response>
         </cfif>
 
         <cfif NOT isValid("regex", arguments.pagedesc, validateData)>
             <cfset response.isValid = false>
             <cfset response.errorMessage &= "Page description should not contain numbers only.<br>">
+            <cfreturn response>
         </cfif>
+        <cfset local.result=createObject("component", "CFC_models.page").savePage(pageid,pagename,pagedesc)>
+            <cfset message=#local.result#.savePage();
+            <cfset response.isValid = true>
+            <cfset response.errorMessage =message >
+            <cfreturn response>
+    </cffunction>
+</cfcomponent>--->
+<!---<cfcomponent>
+    <cffunction name="savePage" access="remote" returnformat="json" returntype="struct">
+        <cfargument name="pagename" type="string" required="true">
+        <cfargument name="pagedesc" type="string" required="true">
+        
+        <cfset var response = {
+            "isSuccess" = true,
+            "message" = ""
+        }>
+        <cfset var validData = "^[a-zA-Z]+$">
+        <cfset var validateData = "^(?=.*[a-zA-Z])[\w\s]+$">
+        
+        <cfif len(trim(arguments.pagename)) eq 0 and len(trim(arguments.pagedesc)) eq 0>
+            <cfset response.isSuccess = false>
+            <cfset response.message &= "Both page name and page description are required.<br>">
+        <cfelseif NOT isValid("regex", arguments.pagename, validData)>
+            <cfset response.isSuccess = false>
+            <cfset response.message &= "Page name should contain only alphabetic characters.<br>">
+        <cfelseif NOT isValid("regex", arguments.pagedesc, validateData)>
+            <cfset response.isSuccess = false>
+            <cfset response.message &= "Page description should not contain numbers only.<br>">
+        <cfelse>
+            <cfset local.result = createObject("component", "CFC_models.page").isExist(pagename)>
+            <cfset response.isSuccess = true>
+            <cfset response.message = local.result.message>
+        </cfif>
+
+        <cfreturn response>
+
+        <!---<cfif len(trim(arguments.pagename)) eq 0 >
+            <cfset response.isSuccess = false>
+            <cfset response.message &= "page name is required.">
+        <cfelseif isValid("regex", arguments.pagename, validData)>
+            <cfset response.isSuccess = false>
+            <cfset response.message &= "Page name should contain only alphabetic characters">
+        </cfif>
+        <cfif len(trim(arguments.pagedesc)) eq 0 >
+            <cfset response.isSuccess = false>
+            <cfset response.message &= "page description is required.">
+        <cfelseif isValid("regex", arguments.pagedesc, validateData)>
+            <cfset response.isSuccess = false>
+            <cfset response.message &= "Page description should not contain numbers only.<br>">
+        </cfif>
+        <cfif response.isSuccess>
+        <cfset local.result = createObject("component", "CFC_models.page").savePage(pageid,pagename,pagedesc)>
+        <cfset response.isSuccess = true>
+        <cfset response.message = local.result.message>
+        <cfreturn response>
+        </cfif>--->
+
+    </cffunction>
+</cfcomponent>--->
+
+<!---<cfcomponent>
+    <cffunction name="savePage" access="remote" returnformat="json" returntype="struct">
+        <cfargument name="pagename" type="string" required="true">
+        <cfargument name="pagedesc" type="string" required="true">
+        
+        <cfset var response = {
+            "isSuccess" = true,
+            "message" = ""
+        }>
+        <cfset var validData = "^[a-zA-Z]+$">
+        <cfset var validateData = "^(?=.*[a-zA-Z])[\w\s]+$">
+        
+        <cfif len(trim(arguments.pagename)) eq 0 and len(trim(arguments.pagedesc)) eq 0>
+            <cfset response.isSuccess = false>
+            <cfset response.message &= "Both page name and page description are required.<br>">
+        <cfelseif NOT isValid("regex", arguments.pagename, validData)>
+            <cfset response.isSuccess = false>
+            <cfset response.message &= "Page name should contain only alphabetic characters.<br>">
+        <cfelseif NOT isValid("regex", arguments.pagedesc, validateData)>
+            <cfset response.isSuccess = false>
+            <cfset response.message &= "Page description should not contain numbers only.<br>">
+        <cfelse>
+            <cfset local.result = createObject("component", "CFC_models.page").isExist(pagename)>
+            <cfset response.isSuccess = true>
+            <cfset response.message = local.result.message>
+        </cfif>
+
         <cfreturn response>
     </cffunction>
-</cfcomponent>
+</cfcomponent>--->
+
+component{
+    remote function validateInputs(required string pagename,required string pagedesc){
+        responseStruct=structNew();
+        responseStruct.isSuccess=true;
+        responseStruct.message='';
+        validData="^[a-zA-Z]+$";
+        validateData="^(?=.*[a-zA-Z])[\w\s]+$";
+        if(len(trim(pagename)) ==0 && len(trim(pagedesc)) == 0){
+            responseStruct.isSuccess=false;
+            responseStruct.message='Both page name and page description are required';
+        }
+        else if !isValid("regex",validData,pagename){
+            responseStruct.isSuccess=false;
+            responseStruct.message='Page name should contain only alphabetic characters';
+
+        }
+        else if !isValid("regex", validateData, pagedesc){
+            responseStruct.isSuccess=false;
+            responseStruct.message='Page description should not contain numbers only';
+        }
+    }
+}
+

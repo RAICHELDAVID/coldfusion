@@ -105,6 +105,14 @@ text-decoration: none !important;
     top: 20px;
     left:38%;
 }
+#saveMessage{
+    text-align: center;
+    color:red;
+}
+#saveMessageSuccess{
+    text-align: center;
+    color:green; 
+}
 
 @media (max-width: 768px) {
     .contentDiv {
