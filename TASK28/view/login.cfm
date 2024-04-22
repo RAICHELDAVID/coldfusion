@@ -1,7 +1,5 @@
-<cfset path = GetTemplatePath()>
-<cfset cfm=path>
-<cfset user = createObject("component", "components.page").login()>
-<cfset user = createObject("component", "components.page")>
+<cfset user = createObject("component", "admin.page").login()>
+<!---<cfset user = createObject("component", "admin.page")>
     <cfif structKeyExists(form, "login")>
         <cfset local.result = user.doLogin(form.username, form.password)>
         <cfif local.result>
@@ -9,7 +7,7 @@
         <cfelse>
             <cfoutput>Invalid user</cfoutput>
         </cfif>
-    </cfif>
+    </cfif>--->
 
 <!---<body>
     <div class="loginClass">
@@ -27,18 +25,16 @@
 </body>
 --->
 <cfinclude  template="header.cfm">
-
 <div class="container-fluid">
-<!---<nav class="navbar bg-body-tertiary">
+<nav class="navbar bg-body-tertiary">
   <div class="container-fluid d-flex">
-    <a class="navbar-brand d-flex" href="login.cfm">
-      <img src="./assets/images/logo.png" alt="Logo" width="53" height="50" class="d-inline-block align-text-top">
+    <a class="navbar-brand d-flex">
+      <img src="../assets/images/logo.png" alt="Logo" width="53" height="50" class="d-inline-block align-text-top">
       <p class="mt-2 bodytitle">DigifyCMS</p>
     </a>
-    <a href="welcomeHome.cfm">Back</a>
+    <a href="homePage.cfm">HOME</a>
   </div>
-</nav>--->
-    <cfinclude template="navigation.cfm" >
+</nav>
     <h2 class="text-center loginHeading">Welcome to the login page</h2>
     <div class="row justify-content-center">
         <form action="login.cfm" class="col-sm-5 col-xs-5" method="post">
@@ -55,13 +51,15 @@
                 </div>
             </div>
             <div class="mb-3 text-center">
-                <button type="submit" class="btn btn-primary loginButton" name="login">Submit</button>
+                <button type="submit" class="btn btn-primary loginButton" name="login" id="loginBtn2">Submit</button>
                 <button type="submit" class="btn btn-secondary ">Cancel</button>
+                <p id="successMsg" style="color:green;" class="pt-2"> </p>
+                <p id="errorMsg" style="color:red;"> </p>
+                
             </div>
         </form>
     </div>
 </div>
-
 
 </body>
 </html>
