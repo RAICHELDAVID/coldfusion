@@ -1,40 +1,15 @@
-<cfset user = createObject("component", "admin.page").login()>
-<!---<cfset user = createObject("component", "admin.page")>
-    <cfif structKeyExists(form, "login")>
-        <cfset local.result = user.doLogin(form.username, form.password)>
-        <cfif local.result>
-            <cflocation url="homePage.cfm">
-        <cfelse>
-            <cfoutput>Invalid user</cfoutput>
-        </cfif>
-    </cfif>--->
-
-<!---<body>
-    <div class="loginClass">
-        <h1>content management system</h1>
-        <p>welcome to login page</p>
-        <div>
-            <form action="login.cfm" method="post">
-                <label for="username">Username:</label><br>
-                <input type="text" id="username" name="username"><br>
-                <label for="password">Password:</label><br>
-                <input type="password" id="password" name="password"><br><br>
-                <input type="submit" name="login" value="Login" class="loginButton">
-            </form>
-        </div>
-</body>
---->
+<cfset user = createObject("component", "CFC_models.page").login()>
 <cfinclude  template="header.cfm">
 <div class="container-fluid">
-<nav class="navbar bg-body-tertiary">
-  <div class="container-fluid d-flex">
-    <a class="navbar-brand d-flex">
-      <img src="../assets/images/logo.png" alt="Logo" width="53" height="50" class="d-inline-block align-text-top">
-      <p class="mt-2 bodytitle">DigifyCMS</p>
-    </a>
-    <a href="homePage.cfm">HOME</a>
-  </div>
-</nav>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid d-flex">
+            <a class="navbar-brand d-flex">
+                <img src="../assets/images/logo.png" alt="Logo" width="53" height="50" class="d-inline-block align-text-top">
+                <p class="mt-2 bodytitle">DigifyCMS</p>
+            </a>
+            <a href="homePage.cfm">HOME</a>
+        </div>
+    </nav>
     <h2 class="text-center loginHeading">Welcome to the login page</h2>
     <div class="row justify-content-center">
         <form action="login.cfm" class="col-sm-5 col-xs-5" method="post">

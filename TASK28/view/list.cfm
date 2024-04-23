@@ -1,14 +1,6 @@
 <cfinclude  template="header.cfm">
 <div class="container-fluid">
-    <!---<nav class="navbar bg-body-tertiary">
-        <div class="container-fluid d-flex">
-            <a class="navbar-brand d-flex" href="list.cfm">
-                <img src="./assets/images/logo.png" alt="Logo" width="53" height="50" class="d-inline-block align-text-top">
-                <p class="mt-2 bodytitle">DigifyCMS</p>
-            </a>
-            <a href="homePage.cfm">Home</a>
-        </div>
-    </nav>--->
+
     <cfinclude template="navigation.cfm" >
     <cfif session.userRole eq "admin" or session.userRole eq "editor">
         <p class="loginHeading text-center">listpage</p>
@@ -65,10 +57,7 @@
         </cfif>
     </cfif>
     <cfinclude template="footer.cfm" >
-    <!---<div class="welcomeFooter d-flex justify-content-center mb-2">
-        <a href="homePage.cfm" class="p-2">Home</a>
-        <a href="components/page.cfc?method=logout" class="p-2">logout</a>
-    </div>--->
+
 </div>
 </body>
 </html>
