@@ -16,7 +16,7 @@
                     WHERE 
                     pageid = <cfqueryparam value="#arguments.pageid#" cfsqltype="cf_sql_integer">
                 </cfquery>
-                <cfreturn {"success":true,"message":"updated"}>
+                <cfreturn {"success":true,"message":"updated!!"}>
             <cfelse>
                 <cfquery name="addPageQuery" datasource="demo">
                     INSERT INTO task28_page (pagename, pagedesc)
@@ -25,7 +25,7 @@
                     <cfqueryparam value="#arguments.pagedesc#" cfsqltype="cf_sql_varchar">
                     )
                 </cfquery>
-                <cfreturn {"success":true,"message":"inserted"}>
+                <cfreturn {"success":true,"message":"inserted!!"}>
             </cfif>
         
         <cfcatch>

@@ -24,7 +24,7 @@
                     <td>
                         <a href="editPage.cfm?pageid=#local.pages.pageid#" class="editLink">edit</a>
                         <!---<a href="../models/page.cfc?method=deletePage&pageid=#local.pages.pageid#" id="deleteLink">delete</a>--->
-                        <a href="" id="deleteLink" data-pageid="#local.pages.pageid#">delete</a>                   
+                        <a href="" class="deleteLink" data-pageid="#local.pages.pageid#">delete</a>                   
                     </td>
 
                 </tr>

@@ -78,8 +78,8 @@
                     },
                     dataType: 'json',
                     success: function(response) {
-                        if (response.message) {
-                            savePage(pageid, pagename, pagedesc);
+                        if (response.message==true) {
+                            savePagegggh(pageid, pagename, pagedesc);
                         } else {
                             $('#saveMessage').text("Page with the same name already exists. Cannot be added.");
                         }
@@ -92,10 +92,10 @@
             }
         });
         
-        function savePage(pageid, pagename, pagedesc) {
+        function savePagegggh(pageid, pagename, pagedesc) {
             $.ajax({
                 type: 'POST',
-                url: "../models/page.cfc?method=savePage",
+                url: "../controlers/page.cfc?method=savePage",
                 dataType: "json",
                 data: {
                     pageid: pageid,
@@ -122,7 +122,7 @@
         
         
         /*delete page*/
-        $('#deleteLink').click(function(e) {
+        $('.deleteLink').click(function(e) {
             e.preventDefault(); 
             var pageid = $(this).attr('data-pageid');
             if(confirm("click OK to delete this page?")) { 
@@ -135,7 +135,6 @@
                     dataType: "json",
                     success: function(response) {
                         if (response) {
-
                             $(e.target).closest("tr").remove();
                         } 
                     },
