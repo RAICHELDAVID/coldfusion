@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <cfinclude template="navigation.cfm" >
-    <cfif session.userRole eq "admin" or session.userRole eq "editor">
+    <cfif listContains(session.userRole, "admin") or listContains(session.userRole, "editor")>
         <p class="loginHeading text-center">listpage</p>
         <cfset local.pageService = createObject("component", "CFC_models.page")>
         <cfif structKeyExists(url, "logout")>
@@ -23,7 +23,6 @@
                     <td>#pagedesc#</td>
                     <td>
                         <a href="editPage.cfm?pageid=#local.pages.pageid#" class="editLink">edit</a>
-                        <!---<a href="../models/page.cfc?method=deletePage&pageid=#local.pages.pageid#" id="deleteLink">delete</a>--->
                         <a href="" class="deleteLink" data-pageid="#local.pages.pageid#">delete</a>                   
                     </td>
 
@@ -39,7 +38,7 @@
     <cfelse>
         <cfset local.userDashboard = createObject("component", "CFC_models.page")>
         <cfset local.pages = local.userDashboard.getPages()>
-        <cfif session.userRole eq "user">
+        <cfif listContains(session.userRole, "user")>
             <p class="loginHeading text-center">Welcome to listpage</p>
             <table class="table table-striped center">
                 <tr>

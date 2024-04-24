@@ -35,7 +35,7 @@
     </cffunction>
 
 
-    <cffunction name="doesNotExist" access="remote" returnformat="json">
+    <cffunction name="pageNotExists" access="remote" returnformat="json">
         <cfargument name="pageid" type="numeric" required="true">
         <cfargument name="pagename" type="string" required="true">
         
@@ -76,39 +76,20 @@
         </cfquery>
         <cfreturn {"message":true}>
     </cffunction>
-    
-    <cffunction name="doLogin" access="remote" returnformat="json">
+
+    <cffunction name="doLoginAuthenticate" access="remote" returntype="query">
         <cfargument name="username" type="string" required="true">
         <cfargument name="password" type="string" required="true">
-
+        <cfset var hashValue = hash(arguments.password)>
+        
         <cfquery name="getUser" datasource="demo">
             SELECT u.userid, u.roleid, r.rolename
             FROM task28_user u
             INNER JOIN role r ON u.roleid = r.roleid
             WHERE u.username = <cfqueryparam value="#arguments.username#" cfsqltype="cf_sql_varchar">
-            AND u.password = <cfqueryparam value="#(arguments.password)#" cfsqltype="cf_sql_varchar">
+            AND u.password = <cfqueryparam value="#hashValue#" cfsqltype="cf_sql_varchar">
         </cfquery>
-    
-        <cfif getUser.recordCount eq 1>
-            <cfset session.userRole = getUser.rolename>
-            <cfset session.loggedIn = true>
-            <cfreturn {"message": true}>
-        <cfelse>
-            <cfreturn {"message":false}>
-        </cfif>
-    </cffunction>
-
-    <cffunction name="logout" access="remote" returntype="void">
-    
-        <cfset structDelete(session, "loggedIn")>
-        <cfset session.loggedIn = false>
-        <cflocation  url="../view/login.cfm">
-    </cffunction>
-
-    <cffunction name="login" access="remote" returntype="void">
-        <cfif session.loggedIn>
-             <cflocation url="../view/homePage.cfm">
-        </cfif>
+        <cfreturn getUser>
     </cffunction>
 
 </cfcomponent>

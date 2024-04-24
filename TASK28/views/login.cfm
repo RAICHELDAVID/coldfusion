@@ -1,4 +1,3 @@
-<cfset user = createObject("component", "CFC_models.page").login()>
 <cfinclude  template="header.cfm">
 <div class="container-fluid">
     <nav class="navbar bg-body-tertiary">
@@ -27,7 +26,7 @@
             </div>
             <div class="mb-3 text-center">
                 <button type="submit" class="btn btn-primary loginButton" name="login" id="loginBtn2">Submit</button>
-                <button type="submit" class="btn btn-secondary ">Cancel</button>
+                <button type="reset" class="btn btn-secondary ">Cancel</button>
                 <p id="successMsg" style="color:green;" class="pt-2"> </p>
                 <p id="errorMsg" style="color:red;"> </p>
                 

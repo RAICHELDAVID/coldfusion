@@ -4,7 +4,7 @@
 
 <cfinclude template="header.cfm">
 <cfinclude template="navigation.cfm">
-<cfinclude template="../controlers/action.cfm">
+<cfinclude template="../controllers/editPageAction.cfm">
 
 <div class="container savepageContainer" >
     <h2 class="text-center loginHeading">Save page</h2>
