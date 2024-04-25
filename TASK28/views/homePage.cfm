@@ -1,4 +1,3 @@
-
 <cfif !session.loggedIn>
     <cfinclude  template="header.cfm">
     <div class="container-fluid">
@@ -30,7 +29,7 @@
         <cfif session.userRole eq "admin" or session.userRole eq "editor">
         <cfinclude template="navigation.cfm" >
 
-            <h5 class="homeTitle ps-2">Welcome back, Admin</h5>
+            <cfoutput><h5 class="homeTitle ps-2">Welcome back, #session.Firstname#</h5></cfoutput>
             <p class="homePara ps-2">We're glad to see you here. Our site, DigifyCMS Website, is your hub for managing all aspects of your online presence. From creating engaging content to nurturing your growing community, you have the power to shape your digital space.</p>
             <div class="card-deck d-flex">
             <div class="card">

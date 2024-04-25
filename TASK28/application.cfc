@@ -17,6 +17,7 @@
         <cfset session.captchaText = RandRange(1000, 9999)>
         <cfset session.loggedIn = false>
         <cfset session.userRole = "guest">
+        <cfset session.Firstname=''>
         <cfreturn true>
     </cffunction>    
 </cfcomponent>

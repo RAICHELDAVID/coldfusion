@@ -47,7 +47,7 @@
                 </tr>
                 <cfoutput query="local.pages">
                     <tr>
-                        <td>#pagename#</td>
+                        <td>#strPagename#</td>
                         <td>#pagedesc#</td>
                     </tr>
                 </cfoutput>

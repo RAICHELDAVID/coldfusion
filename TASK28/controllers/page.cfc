@@ -1,14 +1,14 @@
 component {
 
-    remote function savePage(pageid, pagename, pagedesc) returnFormat="JSON"{
+    remote function savePage(pageid, strPagename, strPagedesc) returnFormat="JSON"{
         var response = {
             "success" : true,
             "message" : ""
         };
         var validData = "/^[a-zA-Z\s]+$/";
         var validateData = "/^(?=.*[a-zA-Z])[a-zA-Z\d\s]+$/";
-        var strPageName=(len(trim(arguments.pagename)));
-        var strPageDesc=(len(trim(arguments.pagedesc)));
+        var strPageName=(len(trim(arguments.strPagename)));
+        var strPageDesc=(len(trim(arguments.strPagedesc)));
         if (strPageName>40) {
             response.success = false;
             response.message = "Page name cannot exceed 40 characters.<br>";
@@ -24,19 +24,20 @@ component {
          else {
             var local = {};
             local.pageComponent = createObject("component", "CFC_models.page");
-            local.result = local.pageComponent.savePage(pageid, pagename, pagedesc);
+            local.result = local.pageComponent.savePage(pageid, strPagename, strPagedesc);
             response.success = local.result.success;
             response.message = local.result.message;
         }
         return serializeJSON(response);
     }
 
-    remote  function doLogin(username, password) returnFormat="JSON" {
+    remote  function doLogin(strUsername,strPassword) returnFormat="JSON" {
         var userLogin = new CFC_models.page();
-        var getUserQuery = userLogin.doLoginAuthenticate(username,password);
+        var getUserQuery = userLogin.doLoginAuthenticate(strUsername,strPassword);
 
         if (getUserQuery.recordCount eq 1) {
             session.userRole = getUserQuery.rolename;
+            session.Firstname=getUserQuery.Firstname;
             session.loggedIn = true;
             return { "message": true };
         } else {

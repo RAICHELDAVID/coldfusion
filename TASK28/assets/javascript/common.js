@@ -1,16 +1,16 @@
 $(document).ready(function() {
     $('#loginBtn2').click(function(e) {
         e.preventDefault();
-        var username = $("#username").val().trim();
-        var password = $("#password").val().trim();
+        var strUsername = $("#username").val().trim();
+        var strPassword = $("#password").val().trim();
 
         $.ajax({
             type: "POST",
             url: "../controllers/page.cfc?method=doLogin",
             dataType: "json",
             data: {
-                username: username,
-                password: password
+                strUsername: strUsername,
+                strPassword: strPassword
             },
             success: function(response) {
                 if (response.message == true) {
@@ -24,24 +24,25 @@ $(document).ready(function() {
             },
         });
     });
+    
     validateFunction = function() {
         $('#saveMessage').empty();
 
-        var pagename = $('#pagename').val().trim();
-        var pagedesc = $('#pagedesc').val().trim();
+        var strPagename = $('#pagename').val().trim();
+        var strPagedesc = $('#pagedesc').val().trim();
         var validData = /^[a-zA-Z\s]+$/;
         var validateData = /^(?=.*[a-zA-Z])[a-zA-Z\d\s]+$/;
         var errors = [];
-        if (pagename == '') {
+        if (strPagename == '') {
             errors.push("Page Name is required!");
         }
-        else if (!pagename.match(validData)) {
+        else if (!strPagename.match(validData)) {
             errors.push("Page Name should contain only alphabets!");
         }
-        if (pagedesc == '') {
+        if (strPagedesc == '') {
             errors.push("Page description is required!");
         }
-        else if (!pagedesc.match(validateData)) {
+        else if (!strPagedesc.match(validateData)) {
             errors.push("Page Description should not contain digits only!");
         }
         if (errors.length > 0) {
@@ -57,20 +58,20 @@ $(document).ready(function() {
         event.preventDefault();
         if (validateFunction()) {
             var pageid = $('#pageid').val();
-            var pagename = $('#pagename').val();
-            var pagedesc = $('#pagedesc').val();
+            var strPagename = $('#pagename').val();
+            var strPagedesc = $('#pagedesc').val();
             $.ajax({
                 type: 'POST',
                 url: '../models/page.cfc?method=pageNotExists',
                 data: {
                     pageid: pageid,
-                    pagename: pagename,
-                    pagedesc: pagedesc
+                    strPagename: strPagename,
+                    strPagedesc: strPagedesc
                 },
                 dataType: 'json',
                 success: function(response) {
                     if (response.message == true) {
-                        savePage(pageid, pagename, pagedesc);
+                        savePage(pageid, strPagename, strPagedesc);
                     } else {
                         $('#saveMessage').text("Page with the same name already exists. Cannot be added.");
                     }
@@ -82,15 +83,15 @@ $(document).ready(function() {
         }
     });
 
-    function savePage(pageid, pagename, pagedesc) {
+    function savePage(pageid, strPagename, strPagedesc) {
         $.ajax({
             type: 'POST',
             url: "../models/page.cfc?method=savePage",
             dataType: "json",
             data: {
                 pageid: pageid,
-                pagename: pagename,
-                pagedesc: pagedesc
+                strPagename: strPagename,
+                strPagedesc: strPagedesc
             },
             success: function(response) {
                 if (response.success) {

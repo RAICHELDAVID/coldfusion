@@ -1,6 +1,4 @@
-<cfset variables.pageid = 0>
-<cfset variables.pagename = "">
-<cfset variables.pagedesc = "">
+
 
 <cfinclude template="header.cfm">
 <cfinclude template="navigation.cfm">
@@ -15,11 +13,11 @@
             <form action="editPage.cfm" class="col-sm-5 col-xs-5" id="editForm" method="post">
                 <div class="mb-3 row">
                     <label for="pagename" class="col-sm-2 col-form-label username w-auto">Page Name:</label>
-                    <input type="text" name="pagename" class="form-control" value="#variables.pagename#" id="pagename">
+                    <input type="text" name="strPagename" class="form-control" value="#variables.strPagename#" id="pagename">
                 </div>
                 <div class="mb-3 row">
                     <label for="pagedesc" class="col-sm-2 col-form-label username w-auto">Page Description:</label>
-                    <textarea name="pagedesc" class="form-control" id="pagedesc">#variables.pagedesc#</textarea>
+                    <textarea name="pagedesc" class="form-control" id="pagedesc">#variables.strPagedesc#</textarea>
                 </div>
                 <input type="hidden" name="pageid" value="#variables.pageid#" id="pageid">
                 <div class="mb-3 text-center">

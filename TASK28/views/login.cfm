@@ -1,7 +1,7 @@
 <cfinclude  template="header.cfm">
 <div class="container-fluid">
     <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid d-flex">
+        <div class="container-fluid d-flex justify-content-start loginDiv">
             <a class="navbar-brand d-flex">
                 <img src="../assets/images/logo.png" alt="Logo" width="53" height="50" class="d-inline-block align-text-top">
                 <p class="mt-2 bodytitle">DigifyCMS</p>
@@ -9,19 +9,19 @@
             <a href="homePage.cfm">HOME</a>
         </div>
     </nav>
-    <h2 class="text-center loginHeading">Welcome to the login page</h2>
+    <h2 class="text-center loginHeading">LOGIN PAGE</h2>
     <div class="row justify-content-center">
-        <form action="login.cfm" class="col-sm-5 col-xs-5" method="post">
+        <form action="homePage.cfm" class="col-sm-5 col-xs-5" id="formId" method="post">
             <div class="mb-3 row">
                 <label  class="col-sm-2 col-form-label username">Username</label>
                 <div>
-                    <input type="text" class="form-control" id="username" name="username">
+                    <input type="text" class="form-control" id="username" name="strUsername">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label password">Password</label>
                 <div>
-                    <input type="password" class="form-control" id="password" name="password">
+                    <input type="password" class="form-control" id="password" name="strPassword">
                 </div>
             </div>
             <div class="mb-3 text-center">
