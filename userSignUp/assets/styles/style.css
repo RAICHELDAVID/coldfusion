@@ -1,0 +1,10 @@
+#strRole{
+    border-radius: 5%;
+    width: 545px;
+    margin-left: 14px;
+    height: 39px;
+    border-color: lightgrey;
+}
+.strConfirmPassword{
+    width: auto;
+}
