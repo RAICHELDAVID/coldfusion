@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DigifyCMS</title>
+    <title>Sign up</title>
     <link rel="stylesheet" href="assets/styles/style.css">
     <link href="assets/styles/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="assets/javascript/jquery.js"></script>
-    <script src="assets/javascript/common.js"></script>
+    <!---<script src="assets/javascript/jquery.js"></script>
+    <script src="assets/javascript/common.js"></script>--->
 </head>
 <body>
 <div class="container-fluid">
     <h2 class="text-center loginHeading">SIGNUP PAGE</h2>
-    <p class="text-center" id="message" class="pt-2"> </p>
+    <cfif isDefined('errorMessage')>
+        <cfoutput><p class="text-center errorMessage">#errorMessage#</p></cfoutput>
+    </cfif>
+    <cfif isDefined('message')>
+        <cfoutput><p class="text-center successMessage">#message#</p></cfoutput>
+    </cfif>
+    <p class="text-center" class="pt-2">
     <div class="row justify-content-center">
-        <form action="" class="col-sm-5 col-xs-5" id="formId" method="post">
+    <cfoutput>
+        <form action="index.cfm?action=signUp" class="col-sm-5 col-xs-5" id="formId" method="post">
             <div class="mb-3 row">
                 <label  class="col-sm-2 col-form-label strName">Name</label>
                 <div>
@@ -39,7 +46,7 @@
             </div>
             <div class="mb-3 row">
                 <label>Choose the role</label>
-                <select name="strRole" id="strRole">
+                <select name="intRole" id="intRole">
                     <option  selected disabled hidden>Select an Option</option>
                     <option value="1">Admin</option>
                     <option value="2">Editor</option>
@@ -54,7 +61,10 @@
                 
             </div>
         </form>
+        </cfoutput>
     </div>
 </div>
 </body>
 </html>
+
+

@@ -1,4 +1,4 @@
-#strRole{
+#intRole{
     border-radius: 5%;
     width: 545px;
     margin-left: 14px;
@@ -7,4 +7,14 @@
 }
 .strConfirmPassword{
     width: auto;
+}
+.errorMessage{
+    text-align: center;
+    color: red;
+    margin: 0;
+}
+.successMessage{
+    text-align: center;
+    color: green;
+    margin: 0;
 }

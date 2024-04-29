@@ -2,15 +2,15 @@
     cfparam(name="url.action", default="", pattern="");
 
     switch(lcase(url.action)){
-        case "main":
-            include "/controllers/main/mainAction.cfm";
-            include "/views/main.cfm";
+        case "signUp":
+            include "/controllers/signUp/signUpAction.cfm";
+            include "/views/signUp.cfm";
         break;
 
         // The provided event could not be matched.
         default:
            // throw( type="InvalidEvent" );
-           include "/views/welcome.cfm";
+           include "/views/signUp.cfm";
         break;
     }
 </cfscript>
