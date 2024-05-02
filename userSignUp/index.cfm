@@ -10,6 +10,8 @@
         // The provided event could not be matched.
         default:
            // throw( type="InvalidEvent" );
+            include "/controllers/signUp/signUpAction.cfm";
+
            include "/views/signUp.cfm";
         break;
     }

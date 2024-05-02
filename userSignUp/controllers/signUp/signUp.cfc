@@ -3,7 +3,8 @@ component {
         required string strName, 
         required string strUsername, 
         required string strPassword, 
-        required string strConfirmPassword 
+        required string strConfirmPassword,
+        required integer intRole
     ){
         var errors = [];
         var regexName = '^[a-zA-Z]+$';
@@ -24,6 +25,8 @@ component {
         }
         else{
             arrayAppend(errors, "Username already exist!!");
+           
+           
         }
 
         if (!reFind(regexPassword, strPassword)) {

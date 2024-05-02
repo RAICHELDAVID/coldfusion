@@ -4,17 +4,15 @@
     <title>Sign up</title>
     <link rel="stylesheet" href="assets/styles/style.css">
     <link href="assets/styles/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!---<script src="assets/javascript/jquery.js"></script>
-    <script src="assets/javascript/common.js"></script>--->
 </head>
 <body>
 <div class="container-fluid">
     <h2 class="text-center loginHeading">SIGNUP PAGE</h2>
-    <cfif isDefined('errorMessage')>
-        <cfoutput><p class="text-center errorMessage">#errorMessage#</p></cfoutput>
+    <cfif isDefined('variables.errorMessage')>
+        <cfoutput><p class="text-center errorMessage">#variables.errorMessage#</p></cfoutput>
     </cfif>
-    <cfif isDefined('message')>
-        <cfoutput><p class="text-center successMessage">#message#</p></cfoutput>
+    <cfif isDefined('variables.message')>
+        <cfoutput><p class="text-center successMessage">#variables.message#</p></cfoutput>
     </cfif>
     <p class="text-center" class="pt-2">
     <div class="row justify-content-center">
@@ -23,13 +21,13 @@
             <div class="mb-3 row">
                 <label  class="col-sm-2 col-form-label strName">Name</label>
                 <div>
-                    <input type="text" class="form-control" id="strName" name="strName">
+                    <input type="text" class="form-control" id="strName" name="strName" value="#variables.strName#">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label  class="col-sm-2 col-form-label strUsername">Username</label>
                 <div>
-                    <input type="text" class="form-control" id="strUsername" name="strUsername">
+                    <input type="text" class="form-control" id="strUsername" name="strUsername" value="#variables.strUsername#">
                 </div>
             </div>
             <div class="mb-3 row">
@@ -47,18 +45,16 @@
             <div class="mb-3 row">
                 <label>Choose the role</label>
                 <select name="intRole" id="intRole">
-                    <option  selected disabled hidden>Select an Option</option>
-                    <option value="1">Admin</option>
-                    <option value="2">Editor</option>
-                    <option value="3">User</option>
+                    <option selected disabled hidden>Select an Option</option>
+                    <option value="1" <cfif variables.intRole EQ 1>selected</cfif>>Admin</option>
+                    <option value="2" <cfif variables.intRole EQ 2>selected</cfif>>Editor</option>
+                    <option value="3" <cfif variables.intRole EQ 3>selected</cfif>>User</option>
                 </select>
                 <br><br>
             </div>
             <div class="mb-3 text-center">
                 <button type="submit" class="btn btn-primary loginButton" name="login" id="loginBtn2">Submit</button>
-                <button type="reset" class="btn btn-secondary ">Cancel</button>
-
-                
+                <button type="reset" class="btn btn-secondary ">Cancel</button>    
             </div>
         </form>
         </cfoutput>
@@ -66,5 +62,10 @@
 </div>
 </body>
 </html>
+
+
+
+
+
 
 
