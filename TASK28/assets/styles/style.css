@@ -43,13 +43,13 @@ table.center{
 background: #d3eff7;
 }
 .bodytitle{
-color: darkgoldenrod;
+font-weight: 700;
 }
 .loginHeading{
 color: darkgoldenrod !important;
 font-family: sans-serif;
 letter-spacing: -1px;
-font-weight: lighter;
+font-weight: 800;
 padding-top: 10px;
 font-size: x-large;
 }
@@ -65,21 +65,20 @@ input[type="text"], textarea {
 .loginButton{
 background: darkgoldenrod !important;
 border: white !important;
+color: black !important;
 }
 table {
     margin-top: 20px; 
     margin-bottom: 20px; 
 }
 .tableHeader{
-    color: #ce9a43 !important;
-    font-weight: 700;
+    font-weight: 600;
 }
-a,td,.homeTitle,.homePara,.card-title,.card-text{
-    color:darkgoldenrod !important;
+a,.username,.password{
+    color:black !important;
     text-decoration: none !important;
 }
 .btn-link{
-color: darkgoldenrod !important;
 text-decoration: none !important;
 }
 .card{
@@ -88,7 +87,32 @@ text-decoration: none !important;
 .card-deck{
     justify-content: space-around;
 }
+.editLink,.updateLink{
+    color:black !important;
+}
+.welcomeFooterlist{
+    margin-top: 210px;
+}
+.welcomeFooteredit{
+    margin-top: 110px !important;
 
+}
+.welcomeFooter{
+    margin-top:120px !important;
+}
+.savepageError{
+    position: fixed;
+    top: 20px;
+    left:38%;
+}
+#saveMessage{
+    text-align: center;
+    color:red;
+}
+#saveMessageSuccess{
+    text-align: center;
+    color:green; 
+}
 
 @media (max-width: 768px) {
     .contentDiv {
@@ -128,3 +152,5 @@ text-decoration: none !important;
         font-size: 8px;
     }
 } 
+
+
